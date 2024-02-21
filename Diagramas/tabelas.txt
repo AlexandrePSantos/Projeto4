@@ -1,0 +1,19 @@
+utilizador (id_user(PK), nome, apelido, email, telemovel, telefone, titulo, localidade, cod_postal, cidade, distrito, pais)
+
+imovel (id_imovel(PK), id_tipo_imovel(FK), id_user(FK), area, morada, andar, num_divisoes, ano_construcao, val_seguro, val_imi, val_condominio, data_aquisicao, preco_compra)
+
+tipo_depesa (id_tipo_despesa(PK), tipo)
+
+despesa (id_desp(PK), id_imovel(FK), id_user(FK), id_tipo_despesa(FK), data, valor)
+
+inquilino (id_inquilino(PK), nome, apelido, email, telemovel, telefone, morada)
+
+arrendamento (id_arrendamento(PK), id_inquilino(FK), id_imovel(FK), data_ini, data_fim, valor, perocidade_pag, data_fim, valor_pago)
+
+pagamento (id_pagamento(PK), id_arrendamento(FK), data_pag, metodo_pag)
+
+tipo_contrato (id_tipo_contrato(PK), id_user(FK), tipo)
+
+tipo_despesa (id_tipo_despesa(FK), tipo)
+
+fotos (id_foto(PK), id_imovel(FK), foto)
