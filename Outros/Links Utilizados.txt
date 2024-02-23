@@ -1,7 +1,7 @@
 Documentação -> https://laravel.com/docs/
 php -> https://windows.php.net/download/
 Gestor de dependencias php -> https://getcomposer.org/
-DataGrip -> https://www.jetbrains.com/datagrip/
+MySQL Workbench -> https://www.mysql.com/products/workbench/
 VS Code Extensions -> https://blog.devgenius.io/recommended-visual-studio-code-extensions-for-laravel-developers-76244ea0b730
 
 Base/Inspiração para o projeto -> https://www.rentila.pt/
