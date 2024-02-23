@@ -7,12 +7,26 @@ CREATE DATABASE GESImoveis;
 -- Use the database
 USE GESImoveis;
 
+-- Criar tabela Tipo_depesa
+CREATE TABLE tipo_depesa (
+    id_tipo_despesa INT AUTO_INCREMENT PRIMARY KEY,
+    tipo VARCHAR(255)
+);
+
+-- Criar tabela Tipo_contrato
+CREATE TABLE tipo_contrato (
+    id_tipo_contrato INT AUTO_INCREMENT PRIMARY KEY,
+    tipo VARCHAR(255)
+);
+
 -- Criar tabela Utilizador
 CREATE TABLE utilizador (
     id_user INT AUTO_INCREMENT PRIMARY KEY,
+    is_admin BOOLEAN,
     nome VARCHAR(255),
     apelido VARCHAR(255),
     email VARCHAR(255),
+    password VARCHAR(255),
     telemovel VARCHAR(20),
     telefone VARCHAR(20),
     titulo VARCHAR(255),
@@ -21,6 +35,12 @@ CREATE TABLE utilizador (
     cidade VARCHAR(255),
     distrito VARCHAR(255),
     pais VARCHAR(255)
+);
+
+-- Criar tabela tipo_imovel
+CREATE TABLE tipo_imovel (
+    id_tipo_imovel INT AUTO_INCREMENT PRIMARY KEY,
+    tipo VARCHAR(255)
 );
 
 -- Criar tabela Imovel
@@ -40,12 +60,6 @@ CREATE TABLE imovel (
     preco_compra DECIMAL(10, 2),
     FOREIGN KEY (id_tipo_imovel) REFERENCES tipo_imovel(id_tipo_imovel),
     FOREIGN KEY (id_user) REFERENCES utilizador(id_user)
-);
-
--- Criar tabela Tipo_depesa
-CREATE TABLE tipo_depesa (
-    id_tipo_despesa INT AUTO_INCREMENT PRIMARY KEY,
-    tipo VARCHAR(255)
 );
 
 -- Criar tabela Despesa
@@ -98,12 +112,6 @@ CREATE TABLE pagamento (
     metodo_pag VARCHAR(255),
     valor DECIMAL(10, 2),
     FOREIGN KEY (id_contrato) REFERENCES contrato(id_contrato)
-);
-
--- Criar tabela Tipo_contrato
-CREATE TABLE tipo_contrato (
-    id_tipo_contrato INT AUTO_INCREMENT PRIMARY KEY,
-    tipo VARCHAR(255)
 );
 
 -- Criar tabela Fotos
