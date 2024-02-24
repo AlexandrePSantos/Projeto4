@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('fotos', function (Blueprint $table) {
             $table->increments('id_foto');
             $table->integer('id_imovel')->unsigned();
-            $table->string('foto', 255);
+            $table->string('foto');
             $table->foreign('id_imovel')->references('id_imovel')->on('imovel');
         });
     }

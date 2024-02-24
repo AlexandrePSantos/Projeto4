@@ -20,12 +20,12 @@ CREATE TABLE tipo_contrato (
 );
 
 -- Criar tabela Utilizador
-CREATE TABLE utilizador (
+CREATE TABLE users (
     id_user INT AUTO_INCREMENT PRIMARY KEY,
     is_admin BOOLEAN,
     nome VARCHAR(255),
     apelido VARCHAR(255),
-    email VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
     password VARCHAR(255),
     telemovel VARCHAR(20),
     telefone VARCHAR(20),
@@ -59,7 +59,7 @@ CREATE TABLE imovel (
     data_aquisicao DATE,
     preco_compra DECIMAL(10, 2),
     FOREIGN KEY (id_tipo_imovel) REFERENCES tipo_imovel(id_tipo_imovel),
-    FOREIGN KEY (id_user) REFERENCES utilizador(id_user)
+    FOREIGN KEY (id_user) REFERENCES users(id_user)
 );
 
 -- Criar tabela Despesa
@@ -71,7 +71,7 @@ CREATE TABLE despesa (
     data DATE,
     valor DECIMAL(10, 2),
     FOREIGN KEY (id_imovel) REFERENCES imovel(id_imovel),
-    FOREIGN KEY (id_user) REFERENCES utilizador(id_user),
+    FOREIGN KEY (id_user) REFERENCES users(id_user),
     FOREIGN KEY (id_tipo_despesa) REFERENCES tipo_depesa(id_tipo_despesa)
 );
 
@@ -125,12 +125,12 @@ CREATE TABLE fotos (
 -- Restrições de integridade para a tabela Imovel
 ALTER TABLE imovel
 ADD CONSTRAINT fk_tipo_imovel FOREIGN KEY (id_tipo_imovel) REFERENCES tipo_imovel(id_tipo_imovel),
-ADD CONSTRAINT fk_user_imovel FOREIGN KEY (id_user) REFERENCES utilizador(id_user);
+ADD CONSTRAINT fk_user_imovel FOREIGN KEY (id_user) REFERENCES users(id_user);
 
 -- Restrições de integridade para a tabela Despesa
 ALTER TABLE despesa
 ADD CONSTRAINT fk_imovel_despesa FOREIGN KEY (id_imovel) REFERENCES imovel(id_imovel),
-ADD CONSTRAINT fk_user_despesa FOREIGN KEY (id_user) REFERENCES utilizador(id_user),
+ADD CONSTRAINT fk_user_despesa FOREIGN KEY (id_user) REFERENCES users(id_user),
 ADD CONSTRAINT fk_tipo_despesa FOREIGN KEY (id_tipo_despesa) REFERENCES tipo_depesa(id_tipo_despesa);
 
 -- Restrições de integridade para a tabela Contrato
@@ -162,7 +162,7 @@ INSERT INTO tipo_contrato (tipo) VALUES
 ('Usufruto');
 
 -- Inserir dados na tabela Utilizador
-INSERT INTO utilizador (is_admin, nome, apelido, email, password, telemovel, telefone, titulo, localidade, cod_postal, cidade, distrito, pais) VALUES
+INSERT INTO users (is_admin, nome, apelido, email, password, telemovel, telefone, titulo, localidade, cod_postal, cidade, distrito, pais) VALUES
 (1, 'Admin', 'Admin', 'admin@example.com', 'admin123', '912345678', '223456789', 'Sr.', 'Porto', '4000-001', 'Porto', 'Porto', 'Portugal'),
 (0, 'João', 'Silva', 'joao@example.com', 'joao123', '912345678', '223456789', 'Dr.', 'Lisboa', '1000-001', 'Lisboa', 'Lisboa', 'Portugal');
 

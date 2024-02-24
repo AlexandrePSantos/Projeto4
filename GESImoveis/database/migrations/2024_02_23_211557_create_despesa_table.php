@@ -12,8 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('despesa', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id_desp');
+            $table->integer('id_imovel')->unsigned();
+            $table->integer('id_user')->unsigned();
+            $table->integer('id_tipo_despesa')->unsigned();
+            $table->date('data');
+            $table->decimal('valor', 10, 2);
             $table->timestamps();
+
+            $table->foreign('id_imovel')->references('id_imovel')->on('imovel');
+            $table->foreign('id_user')->references('id_user')->on('users');
+            $table->foreign('id_tipo_despesa')->references('id_tipo_despesa')->on('tipo_despesa');
         });
     }
 

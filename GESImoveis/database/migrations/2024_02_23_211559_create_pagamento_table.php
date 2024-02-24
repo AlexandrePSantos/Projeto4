@@ -12,8 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pagamento', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id_pagamento');
+            $table->integer('id_contrato')->unsigned();
+            $table->date('data_pag');
+            $table->string('metodo_pag');
+            $table->decimal('valor', 10, 2);
             $table->timestamps();
+
+            $table->foreign('id_contrato')->references('id_contrato')->on('contrato');
         });
     }
 
