@@ -1,0 +1,11 @@
+{
+	"name": "ftkode/phpmailer82",
+	"version": "1.0.0",
+	"require": {
+		"phpmailer/phpmailer": "^6.8.1",
+		"league/oauth2-client" : "*"
+	},
+    "config": {
+        "platform-check": false
+    }
+}

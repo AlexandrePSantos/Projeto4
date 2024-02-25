@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "efaf25dc-c316-4986-8653-8d624d2cd7ba",
+		"name": "Consultas de Mesa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25544416",
+		"_collection_link": "https://gesfaturacao.postman.co/workspace/GESFatura%25C3%25A7%25C3%25A3o~806b66a0-56bc-4c2b-840c-e1a498ed6c52/collection/25546689-efaf25dc-c316-4986-8653-8d624d2cd7ba?action=share&source=collection_link&creator=25544416"
+	},
+	"item": [
+		{
+			"name": "All Produtos na mesa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/table-cart?room=1&table=1&workstation=1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"table-cart"
+					],
+					"query": [
+						{
+							"key": "room",
+							"value": "1"
+						},
+						{
+							"key": "table",
+							"value": "1"
+						},
+						{
+							"key": "workstation",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inserir produtos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "openingCode",
+							"value": "1677583515720444",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "01/07/2023",
+							"type": "text"
+						},
+						{
+							"key": "discount",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "finalize",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "lines",
+							"value": "[{\"article\":150,\"name\":\"AGUA PEDRAS LIMÃO \",\"quantity\":4,\"price\":\"1.1380\",\"tax\":1,\"discount\":0,\"reason\":0,\"retention\":0,\"center\":1,\"comment\":\"\"},{\"article\":150,\"name\":\"AGUA PEDRAS LIMÃO \",\"quantity\":4,\"price\":\"1.1380\",\"tax\":1,\"discount\":0,\"reason\":0,\"retention\":0,\"center\":1,\"comment\":\"\"}]",
+							"type": "text"
+						},
+						{
+							"key": "id_coin",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "observations",
+							"value": "observacoes consulta 2",
+							"type": "text"
+						},
+						{
+							"key": "id_workstation",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "id_room",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "id_table",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "expiration",
+							"value": "01/07/2023",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/table-cart?room=1&table=1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"table-cart"
+					],
+					"query": [
+						{
+							"key": "room",
+							"value": "1"
+						},
+						{
+							"key": "table",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Finalizar consulta",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "payments",
+							"value": "[{\"change\":0,\"id\":1,\"name\":\"numerario\",\"received\":2.8,\"value\":2.8}]",
+							"type": "text"
+						},
+						{
+							"key": "change",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "bank",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "openingCode",
+							"value": "1672841482sL5976",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "01/07/2023",
+							"type": "text"
+						},
+						{
+							"key": "discount",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "finalize",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "id_table",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "id_room",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "id_workstation",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "coin",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "observations",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "lines",
+							"value": "[{\"article\":150,\"name\":\"AGUA PEDRAS LIMÃO \",\"quantity\":2,\"price\":\"1.1380\",\"tax\":1,\"discount\":0,\"reason\":0,\"retention\":0,\"center\":1,\"comment\":\"\"}]",
+							"type": "text"
+						},
+						{
+							"key": "cart",
+							"value": "371",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/table-cart",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"table-cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Consulta by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "cart",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/table-cart",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"table-cart"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

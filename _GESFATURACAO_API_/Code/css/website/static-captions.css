@@ -1,0 +1,31 @@
+.tp-caption a {
+    color:#fff;
+    text-shadow:none;
+    -webkit-transition:all 0.2s ease-out;
+    -moz-transition:all 0.2s ease-out;
+    -o-transition:all 0.2s ease-out;
+    -ms-transition:all 0.2s ease-out;
+}
+
+.tp-caption a:hover {
+    color:#ffa902;
+}
+.tp-caption a {
+    color:#fff;
+    text-shadow:none;
+    line-height: normal!important;
+    -webkit-transition:all 0.2s ease-out;
+    -moz-transition:all 0.2s ease-out;
+    -o-transition:all 0.2s ease-out;
+    -ms-transition:all 0.2s ease-out;
+}
+
+.tp-caption a:hover {
+    color:#ffa902;
+}
+.excerpt-big {
+    color: #24a0de;
+}
+.excerpt-back span {
+    color: #24a0de;
+}

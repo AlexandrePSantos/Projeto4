@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "94d66e05-3b5d-486d-847b-9a8d40e316c9",
+		"name": "Sugestão de Motivos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25544416",
+		"_collection_link": "https://gesfaturacao.postman.co/workspace/GESFatura%25C3%25A7%25C3%25A3o~806b66a0-56bc-4c2b-840c-e1a498ed6c52/collection/25546689-94d66e05-3b5d-486d-847b-9a8d40e316c9?action=share&source=collection_link&creator=25544416"
+	},
+	"item": [
+		{
+			"name": "All Sugestões de Motivo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/reason-sugestions",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"reason-sugestions"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

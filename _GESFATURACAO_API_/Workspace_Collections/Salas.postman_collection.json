@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "a8d8ce8c-7a0a-4ac8-b27c-9f81dcde4cfe",
+		"name": "Salas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25544416",
+		"_collection_link": "https://gesfaturacao.postman.co/workspace/GESFatura%25C3%25A7%25C3%25A3o~806b66a0-56bc-4c2b-840c-e1a498ed6c52/collection/25546689-a8d8ce8c-7a0a-4ac8-b27c-9f81dcde4cfe?action=share&source=collection_link&creator=25544416"
+	},
+	"item": [
+		{
+			"name": "All Salas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/rooms",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Salas Detalhadas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/rooms?treeview=true",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"rooms"
+					],
+					"query": [
+						{
+							"key": "treeview",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
