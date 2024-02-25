@@ -1,0 +1,16 @@
+Comandos:
+
+Correr servidor         ->   php artisan serve
+Migrar e dar seed á BD  ->   php artisan migrate:fresh --seed
+
+Link acesso:
+
+http://localhost:8000/
+
+Desenvolvido:
+
+Login;
+Registar; *
+Editar; *
+
+* -> ainda é necessário incluir alguns campos
