@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('imovel', function (Blueprint $table) {
-            $table->increments('id_imovel');
-            $table->integer('id_tipo_imovel')->unsigned();
-            $table->integer('id_user')->unsigned();
+            $table->id();
+            $table->bigInteger('id_tipo_imovel')->unsigned();
+            $table->bigInteger('id_user')->unsigned();
             $table->decimal('area', 10, 2);
             $table->string('morada');
             $table->string('andar');
@@ -27,8 +27,8 @@ return new class extends Migration
             $table->decimal('preco_compra', 10, 2);
             $table->timestamps();
 
-            $table->foreign('id_tipo_imovel')->references('id_tipo_imovel')->on('tipo_imovel');
-            $table->foreign('id_user')->references('id_user')->on('users');
+            $table->foreign('id_tipo_imovel')->references('id')->on('tipo_imovel');
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

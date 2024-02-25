@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('contrato', function (Blueprint $table) {
-            $table->increments('id_contrato');
-            $table->integer('id_inquilino')->unsigned();
-            $table->integer('id_imovel')->unsigned();
-            $table->integer('id_tipo_contrato')->unsigned();
+            $table->id();
+            $table->bigInteger('id_inquilino')->unsigned();
+            $table->bigInteger('id_imovel')->unsigned();
+            $table->bigInteger('id_tipo_contrato')->unsigned();
             $table->date('data_ini');
             $table->date('data_fim');
             $table->decimal('valor', 10, 2);
@@ -25,9 +25,9 @@ return new class extends Migration
             $table->decimal('valor_pago', 10, 2)->nullable();
             $table->timestamps();
 
-            $table->foreign('id_inquilino')->references('id_inquilino')->on('inquilino');
-            $table->foreign('id_imovel')->references('id_imovel')->on('imovel');
-            $table->foreign('id_tipo_contrato')->references('id_tipo_contrato')->on('tipo_contrato');
+            $table->foreign('id_inquilino')->references('id')->on('inquilino');
+            $table->foreign('id_imovel')->references('id')->on('imovel');
+            $table->foreign('id_tipo_contrato')->references('id')->on('tipo_contrato');
         });
     }
 

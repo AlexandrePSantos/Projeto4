@@ -12,20 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id_user');
+            $table->id();
             $table->enum('role', ['admin', 'proprietario'])->default('proprietario');
-            $table->string('nome');
+            $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('telemovel');
-            $table->string('telefone');
-            $table->string('titulo');
-            $table->string('morada');
-            $table->string('codigo_postal');
-            $table->string('cidade');
-            $table->string('pais');
-            $table->string('nif');
+            $table->string('telemovel')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('titulo')->nullable();
+            $table->string('morada')->nullable();
+            $table->string('codigo_postal')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('pais')->nullable();
+            $table->string('nif')->nullable();
             $table->string('foto')->nullable();
             $table->enum('estado', ['ativo', 'inativo'])->default('ativo');
             $table->rememberToken();

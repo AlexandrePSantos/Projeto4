@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@ipvc.pt',
             'password' => Hash::make('admin'),
             'role' => 'admin',
-            'status' => 'active',
+            'estado' => 'ativo',
         ]);
     }
 }
