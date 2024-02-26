@@ -40,3 +40,5 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:proprietario'])->group(function () {
     Route::get('/proprietario/dashboard', [ProprietarioController::class, 'ProprietarioDashboard'])->name('proprietario.dashboard');
 });
+
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
