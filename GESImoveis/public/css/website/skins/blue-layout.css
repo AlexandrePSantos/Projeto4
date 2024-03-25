@@ -1,0 +1,308 @@
+
+a:hover,a:focus {
+    color: #de8224;
+}
+/*
+===========================================
+button style
+===========================================
+*/
+.btn-primary,
+.sppb-btn-primary {
+        color: #de8224;
+    border: 1px solid #de8224;
+}
+.btn-primary:hover,
+.sppb-btn-primary:hover {
+    border-color: #D47D31;
+    background-color: #D47D31;
+}
+
+.sppb-btn-success {
+    background: #de8224 none repeat scroll 0 0;
+    border: 2px solid #D47D31;
+    
+}
+/*
+===========================================
+main heading
+===========================================
+*/
+
+.main-heading .title::after {
+    background: #de8224 none repeat scroll 0 0;
+}
+
+.js-rotating.morphext {
+    color: #de8224;
+}
+/*
+===========================================
+Overlay
+===========================================
+*/
+.overlay::before {
+    background-color: #de8224;
+
+}
+ul.corporate-social li a:hover {
+    color: #2499C2;
+}
+
+.corporate-social > li:first-child {
+    color: #2499C2;
+}
+
+/*
+===========================================
+Accordion
+===========================================
+*/
+.panel-heading .accordion-toggle {
+    background-color: #de8224;
+}
+
+
+/*
+===========================================
+Top Bar
+===========================================
+*/
+#sp-top-bar ul.sp-contact-info a,
+#topbar ul.sp-contact-info a {
+    color: #D97620;
+}
+/*
+===========================================
+Header
+===========================================
+*/
+.sp-megamenu-parent > li.active > a, .sp-megamenu-parent > li:hover > a {
+    color: #de8224;
+}
+.sp-megamenu-parent.menu-slide-down .sp-has-child > .sp-dropdown {
+    border-top: 2px solid #de8224;
+}
+.header-4 .sp-megamenu-parent > li.active > a,
+.header-4 .sp-megamenu-parent > li:hover > a,
+.header-five .sp-megamenu-parent > li.active > a,
+.header-five .sp-megamenu-parent > li:hover > a {
+    color: #de8224;
+}
+header.header-five .sp-megamenu-parent li.contact-here a {
+    background: #de8224 none repeat scroll 0 0;
+}
+
+/*
+===========================================
+Action
+===========================================
+*/
+section#action {
+    background-color: #595959;
+}
+#action.two .sppb-btn {
+    color: #de8224;
+}
+/*
+===========================================
+Services
+===========================================
+*/
+#services-list .icon {
+    color: #de8224;
+}
+
+/*
+===========================================
+About
+===========================================
+*/
+#about .about-block ul li i {
+    color: #de8224;
+}
+/*
+===========================================
+Feature
+===========================================
+*/
+.feature-item i {
+    color: #de8224;
+    border: 1px solid #de8224;
+
+}
+.feature-item:hover i {
+    background-color: #de8224;
+    color: #fff;
+}
+#list-feature .fec-item .icon {
+    background-color: #de8224;
+
+}
+.fec-block .nav-tabs a i {
+    color: #de8224;
+}
+#features-box .fb-block .inner{
+    border: 1px solid #de8224;
+}
+#features .feature-item i {
+    background-color: #de8224;
+}
+#medical-feature .mf-block {
+    background-color: #de8224;
+}
+#medical-feature .mf-block:nth-child(2) {
+    background-color: #088EDD;
+}
+#medical-feature .mf-block:nth-child(3) {
+    background-color: #1977CD;
+}
+#medical-feature .mf-block:nth-child(4) {
+    background-color: #1063AF;
+}
+/*
+===========================================
+Team
+===========================================
+*/
+.team-block .designation {
+    color: #de8224;
+}
+.team-block .team-image ul.social-two li i {
+    background-color: #de8224;
+}
+/*
+===========================================
+Portfolio
+===========================================
+*/
+.sp-simpleportfolio .sp-simpleportfolio-item .sp-simpleportfolio-info, .sp-simpleportfolio .sp-simpleportfolio-item .sp-simpleportfolio-info:hover {
+    background: #fff none repeat scroll 0 0;
+    border-bottom: 1px solid #ececec;
+}
+.sp-simpleportfolio .sp-simpleportfolio-item:hover .sp-simpleportfolio-info {
+    border-color: #de8224;
+}
+.sp-simpleportfolio .sp-simpleportfolio-item:hover .sp-simpleportfolio-info h3 > a {
+    color: #de8224;
+}
+.sp-simpleportfolio .sp-simpleportfolio-filter > ul > li.active > a, .sp-simpleportfolio .sp-simpleportfolio-filter > ul > li > a:hover {
+    background: #de8224 none repeat scroll 0 0;
+}
+/*
+===========================================
+Price Plans
+===========================================
+*/
+#price-plans .price-block.featured .inner {
+    border: 1px solid #de8224;
+}
+#price-plans .price-block.featured .title::before {
+    border-color: transparent transparent transparent #de8224;
+}
+#price-plans .price-block.featured .title::after {
+    border-color: transparent #de8224 transparent transparent;
+}
+.btn-pricing:hover {
+    background: #de8224 none repeat scroll 0 0;
+    border: 1px solid #de8224;
+}
+.featured .btn-pricing {
+    border: 1px solid #de8224;
+    color: #de8224;
+}
+#price-plans .price-block.featured .title {
+    background: #de8224 none repeat scroll 0 0;
+}
+
+
+/*
+===========================================
+Testimonials
+===========================================
+*/
+.testi_slider .testi-block .pro-client-name {
+    color: #de8224;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+.testi_slider.owl-theme .owl-controls .owl-page span {
+    border: 1px solid #de8224;
+    background-color: #de8224;
+}
+.testi_slider .testi-block p::before {
+    color: #de8224;
+}
+/*
+===========================================
+Partner logo
+===========================================
+*/
+#partners{
+    background-color: #de8224;
+}
+
+/*
+===========================================
+Blog
+===========================================
+*/
+.blog-content .meta > li a{
+    color: #de8224;
+}
+
+.blog-block .simple {
+    color: #de8224;
+}
+
+/*
+===========================================
+Footer
+===========================================
+*/
+footer p i{
+    color: #de8224;
+}
+.footer-block .contact li i {
+    color: #de8224;
+}
+
+.newsletter .sppb-btn {
+    background-color: #de8224;
+}
+.newsletter .sppb-btn:hover {
+    background-color: #1b81b4;
+}
+
+/*
+===========================================
+Events
+===========================================
+*/
+#events .nav-tabs > li > a {
+    color: #428BCA;
+}
+#events .nav-tabs > li.active > a,
+#events .nav-tabs > li.active > a:hover,
+#events .nav-tabs > li.active > a:focus {
+    background-color: #428bca;
+}
+.event-timetable li p.event-time {
+    color: #de8224;
+}
+.excerpt-big {
+    color: #de8224;
+}
+.excerpt-back span {
+    color: #de8224;
+}
+#breadcrumb {
+    background: #D97620 none repeat scroll 0 0;
+}
+.sp-megamenu-parent .sp-dropdown li.sp-menu-item > a:hover {
+    background: #de8224 none repeat scroll 0 0;
+    color: #fff;
+}
