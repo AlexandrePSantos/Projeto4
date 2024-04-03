@@ -61,6 +61,24 @@ class AdminController extends Controller
             $data['foto'] = $filename;
         }
 
+        // Password change logic
+        if($request->old_password && $request->new_password) {
+            $request->validate([
+                'old_password' => 'required',
+                'new_password' => 'required|confirmed'
+            ]);
+
+            if(!Hash::check($request->old_password,auth::user()->password)){
+                $notification = array(
+                    'message' => 'Password antiga incorreta!',
+                    'alert-type' => 'error'
+                );
+                return back()->with($notification);
+            }
+
+            $data->password = Hash::make($request->new_password);
+        }
+
         $data->save();
 
         $notification = array(
@@ -71,39 +89,4 @@ class AdminController extends Controller
         return redirect()->back()->with($notification);
     }
 
-     //ANTONIO
-     public function AdminChangePassword(){
-
-        $id =  Auth::user()->id;
-        $profileData = User::find($id);
-        return view('admin.admin_change_password',compact('profileData'));
-    }
-
-    public function AdminUpdatePassword(Request $request)
-    {
-        $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required|confirmed'
-        ]);
-
-        if(!Hash::check($request->old_password,auth::user()->password)){
-            $notification = array(
-                'message' => 'Password antiga incorreta!',
-                'alert-type' => 'error'
-            );
-            return back()->with($notification);
-        }
-
-        User::whereId(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-            $notification = array(
-                'message' => 'Password atualizada com sucesso!',
-                'alert-type' => 'success'
-            );
-
-        return back()->with($notification);
-    }
-
-   
-
-    
 }

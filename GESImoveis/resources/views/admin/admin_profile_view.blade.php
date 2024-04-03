@@ -79,6 +79,26 @@
                                 alt="profile"
                             >
                         </div>
+                        <!-- Password change form -->
+                        <h6 class="card-title mt-4">Alterar Password</h6>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Password Atual</label>
+                            <input type="password" name="old_password" class="form-control @error('old_password') is-invalid @enderror" id="exampleInputEmail1" autocomplete="off">
+                            @error('old_password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Nova Password</label>
+                            <input type="password" name="new_password" class="form-control @error('new_password') is-invalid @enderror" id="exampleInputEmail1" autocomplete="off">
+                            @error('new_password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Confirmar Nova Password</label>
+                            <input type="password" name="new_password_confirmation" class="form-control" id="exampleInputEmail1" autocomplete="off">
+                        </div>
                         <button type="submit" class="btn btn-primary me-2">Confirmar Alterações</button>
                     </form>
                 </div>

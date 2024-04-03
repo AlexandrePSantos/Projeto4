@@ -49,7 +49,7 @@
 		<div class="collapse navbar-collapse no-padding" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav nav-gesfaturacao">
 				<li class="home">
-					<a class="mnitemlnk" href="/gesfaturacao">Visão Global</a>
+					<a class="mnitemln k" href="/gesfaturacao">Visão Global</a>
 				</li>
 
 				<li class="dropdown artigos clientes tabelas importacao integracao">
