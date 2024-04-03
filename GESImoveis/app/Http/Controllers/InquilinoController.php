@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inquilino;
 use Illuminate\Http\Request;
 
 class InquilinoController extends Controller
@@ -11,7 +12,8 @@ class InquilinoController extends Controller
      */
     public function index()
     {
-        //
+        $inquilinos = Inquilino::all();
+        return view('inquilinos.index', compact('inquilinos'));
     }
 
     /**
@@ -19,7 +21,7 @@ class InquilinoController extends Controller
      */
     public function create()
     {
-        //
+        return view('inquilinos.create');
     }
 
     /**
@@ -27,38 +29,41 @@ class InquilinoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inquilino = Inquilino::create($request->all());
+        return redirect()->route('inquilinos.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Inquilino $inquilino)
     {
-        //
+        return view('inquilinos.show', compact('inquilino'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Inquilino $inquilino)
     {
-        //
+        return view('inquilinos.edit', compact('inquilino'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Inquilino $inquilino)
     {
-        //
+        $inquilino->update($request->all());
+        return redirect()->route('inquilinos.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Inquilino $inquilino)
     {
-        //
+        $inquilino->delete();
+        return redirect()->route('inquilinos.index');
     }
 }

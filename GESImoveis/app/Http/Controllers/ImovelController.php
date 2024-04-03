@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Imovel;
 use Illuminate\Http\Request;
 
 class ImovelController extends Controller
@@ -11,7 +12,8 @@ class ImovelController extends Controller
      */
     public function index()
     {
-        //
+        $imoveis = Imovel::all();
+        return view('imoveis.index', compact('imoveis'));
     }
 
     /**
@@ -19,7 +21,7 @@ class ImovelController extends Controller
      */
     public function create()
     {
-        //
+        return view('imoveis.create');
     }
 
     /**
@@ -27,38 +29,41 @@ class ImovelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $imovel = Imovel::create($request->all());
+        return redirect()->route('imoveis.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Imovel $imovel)
     {
-        //
+        return view('imoveis.show', compact('imovel'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Imovel $imovel)
     {
-        //
+        return view('imoveis.edit', compact('imovel'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Imovel $imovel)
     {
-        //
+        $imovel->update($request->all());
+        return redirect()->route('imoveis.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Imovel $imovel)
     {
-        //
+        $imovel->delete();
+        return redirect()->route('imoveis.index');
     }
 }

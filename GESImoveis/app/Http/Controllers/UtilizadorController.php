@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UtilizadorController extends Controller
@@ -11,7 +12,8 @@ class UtilizadorController extends Controller
      */
     public function index()
     {
-        //
+        $utilizadores = Utilizador::all();
+        return view('utilizadores.index', compact('utilizadores'));
     }
 
     /**
@@ -19,7 +21,7 @@ class UtilizadorController extends Controller
      */
     public function create()
     {
-        //
+        return view('utilizadores.create');
     }
 
     /**
@@ -27,38 +29,41 @@ class UtilizadorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $utilizador = Utilizador::create($request->all());
+        return redirect()->route('utilizadores.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Utilizador $utilizador)
     {
-        //
+        return view('utilizadores.show', compact('utilizador'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Utilizador $utilizador)
     {
-        //
+        return view('utilizadores.edit', compact('utilizador'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Utilizador $utilizador)
     {
-        //
+        $utilizador->update($request->all());
+        return redirect()->route('utilizadores.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Utilizador $utilizador)
     {
-        //
+        $utilizador->delete();
+        return redirect()->route('utilizadores.index');
     }
 }

@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProprietarioController;
+use App\Http\Controllers\InquilinoController;
+use App\Http\Controllers\UtilizadorController;
+use App\Http\Controllers\ImovelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +39,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
     Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+    Route::resource('/inquilinos', InquilinoController::class);
+    Route::resource('/utilizadores', UtilizadorController::class);
+    Route::resource('/imoveis', ImovelController::class);
 });
 
 Route::get('/admin/login', function () {
