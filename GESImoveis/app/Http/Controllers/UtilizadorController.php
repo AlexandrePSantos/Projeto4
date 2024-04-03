@@ -12,7 +12,7 @@ class UtilizadorController extends Controller
      */
     public function index()
     {
-        $utilizadores = Utilizador::all();
+        $utilizadores = User::all();
         return view('utilizadores.index', compact('utilizadores'));
     }
 
@@ -29,14 +29,14 @@ class UtilizadorController extends Controller
      */
     public function store(Request $request)
     {
-        $utilizador = Utilizador::create($request->all());
+        $utilizador = User::create($request->all());
         return redirect()->route('utilizadores.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Utilizador $utilizador)
+    public function show(User $utilizador)
     {
         return view('utilizadores.show', compact('utilizador'));
     }
@@ -44,7 +44,7 @@ class UtilizadorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Utilizador $utilizador)
+    public function edit(User $utilizador)
     {
         return view('utilizadores.edit', compact('utilizador'));
     }
@@ -52,7 +52,7 @@ class UtilizadorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Utilizador $utilizador)
+    public function update(Request $request, User $utilizador)
     {
         $utilizador->update($request->all());
         return redirect()->route('utilizadores.index');
@@ -61,7 +61,7 @@ class UtilizadorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Utilizador $utilizador)
+    public function destroy(User $utilizador)
     {
         $utilizador->delete();
         return redirect()->route('utilizadores.index');
