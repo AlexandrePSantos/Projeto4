@@ -1,19 +1,22 @@
+<a href="{{ route('utilizadores.create') }}" class="btn btn-primary">Criar Utilizador</a>
+
+
 <table>
     <thead>
         <tr>
             <th>ID</th>
-            <th>Role</th>
-            <th>Name</th>
+            <th>Tipo</th>
+            <th>Nome</th>
             <th>Email</th>
-            <th>Phone</th>
-            <th>Title</th>
-            <th>Address</th>
-            <th>Postal Code</th>
-            <th>City</th>
-            <th>Country</th>
+            <th>Telemovél</th>
+            <th>Titulo</th>
+            <th>Localidade</th>
+            <th>Código Postal</th>
+            <th>Cidade</th>
+            <th>Pais</th>
             <th>NIF</th>
-            <th>Photo</th>
-            <th>Status</th>
+            <th>Foto</th>
+            <th>Estado</th>
         </tr>
     </thead>
     <tbody>
