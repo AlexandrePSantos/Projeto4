@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form action="{{ route('imoveis.store') }}" method="POST">
     @csrf
 
@@ -47,3 +48,5 @@
 
     <input type="submit" value="Criar Imóvel">
 </form>
+=======
+>>>>>>> parent of b4b1d8b (tentativas-de-perceber-isto)
