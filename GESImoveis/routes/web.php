@@ -45,6 +45,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('/inquilinos', InquilinoController::class);
     Route::resource('/utilizadores', UtilizadorController::class);
     Route::resource('/imoveis', ImovelController::class);
+    Route::put('/imoveis/{imovel}', [ImovelController::class, 'update'])->name('imoveis.update');
 });
 
 Route::get('/admin/login', function () {
