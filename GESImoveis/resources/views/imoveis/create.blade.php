@@ -3,8 +3,8 @@
 
     <label for="id_tipo_imovel">Tipo de Imóvel</label><br>
     <select name="id_tipo_imovel" id="id_tipo_imovel">
-        @foreach($tiposImovel as $tipoImovel)
-            <option value="{{ $tipoImovel->id }}">{{ $tipoImovel->nome }}</option>
+        @foreach($Imovel as $Imovel)
+            <option value="{{ $tipoImovel->id }}">{{ $Imovel->nome }}</option>
         @endforeach
     </select><br>
 

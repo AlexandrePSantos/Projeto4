@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Imovel;
 use Illuminate\Http\Request;
 
+
+
 class ImovelController extends Controller
 {
     /**
@@ -13,8 +15,10 @@ class ImovelController extends Controller
     public function index()
     {
         $imoveis = Imovel::all();
-        return view('imoveis.index', compact('imoveis'));
+
+        return view('imoveis.index', compact('imoveis', 'tiposImovel'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
