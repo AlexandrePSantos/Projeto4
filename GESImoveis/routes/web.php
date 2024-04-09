@@ -50,9 +50,27 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/utilizadores/{utilizador}', [UtilizadorController::class, 'destroy'])->name('utilizadores.destroy');
     Route::get('/utilizadores/create', [UtilizadorController::class, 'create'])->name('utilizadores.create');
     Route::post('/utilizadores', [UtilizadorController::class, 'store'])->name('utilizadores.store');
+    Route::get('/utilizadores/{utilizador}', [UtilizadorController::class, 'show'])->name('utilizadores.show');
+});
 
-    Route::resource('/inquilinos', InquilinoController::class);
-    Route::resource('/imoveis', ImovelController::class);
+Route::middleware(['auth', 'role:admin,proprietario'])->group(function () {
+    // Inquilinos
+    Route::get('/inquilinos', [InquilinoController::class, 'index'])->name('inquilinos.index');
+    Route::get('/inquilinos/{inquilino}/edit', [InquilinoController::class, 'edit'])->name('inquilinos.edit');
+    Route::put('/inquilinos/{inquilino}', [InquilinoController::class, 'update'])->name('inquilinos.update');
+    Route::delete('/inquilinos/{inquilino}', [InquilinoController::class, 'destroy'])->name('inquilinos.destroy');
+    Route::get('/inquilinos/create', [InquilinoController::class, 'create'])->name('inquilinos.create');
+    Route::post('/inquilinos', [InquilinoController::class, 'store'])->name('inquilinos.store');
+    Route::get('/inquilinos/{inquilino}', [InquilinoController::class, 'show'])->name('inquilinos.show');
+
+    // Imoveis
+    Route::get('/imoveis', [ImovelController::class, 'index'])->name('imoveis.index');
+    Route::get('/imoveis/{imovel}/edit', [ImovelController::class, 'edit'])->name('imoveis.edit');
+    Route::put('/imoveis/{imovel}', [ImovelController::class, 'update'])->name('imoveis.update');
+    Route::delete('/imoveis/{imovel}', [ImovelController::class, 'destroy'])->name('imoveis.destroy');
+    Route::get('/imoveis/create', [ImovelController::class, 'create'])->name('imoveis.create');
+    Route::post('/imoveis', [ImovelController::class, 'store'])->name('imoveis.store');
+    Route::get('/imoveis/{imovel}', [ImovelController::class, 'show'])->name('imoveis.show');
 });
 
 Route::get('/admin/login', function () {

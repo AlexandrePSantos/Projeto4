@@ -59,6 +59,7 @@
                             </form>
                             <a href="{{ route('utilizadores.edit', $user->id) }}" class="btn btn-primary">Editar</a>
                         @endif
+                        <br><a href="{{ route('utilizadores.show', $user->id) }}" class="btn btn-primary">Detalhes</a>
                     </td>
                 </tr>
             @endif
