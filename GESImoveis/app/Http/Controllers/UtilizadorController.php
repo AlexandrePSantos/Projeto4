@@ -63,7 +63,9 @@ class UtilizadorController extends Controller
      */
     public function destroy(User $utilizador)
     {
-        $utilizador->delete();
+        $utilizador->estado = 'inativo';
+        $utilizador->save();
+
         return redirect()->route('utilizadores.index');
     }
 }
