@@ -42,8 +42,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
     Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+    // Route::resource('/utilizadores', UtilizadorController::class);
+    // Utilizadores
+    Route::get('/utilizadores', [UtilizadorController::class, 'index'])->name('utilizadores.index');
+    Route::get('/utilizadores/{utilizador}/edit', [UtilizadorController::class, 'edit'])->name('utilizadores.edit');
+    Route::put('/utilizadores/{utilizador}', [UtilizadorController::class, 'update'])->name('utilizadores.update');
+    Route::delete('/utilizadores/{utilizador}', [UtilizadorController::class, 'destroy'])->name('utilizadores.destroy');
+    Route::get('/utilizadores/create', [UtilizadorController::class, 'create'])->name('utilizadores.create');
+    Route::post('/utilizadores', [UtilizadorController::class, 'store'])->name('utilizadores.store');
+
     Route::resource('/inquilinos', InquilinoController::class);
-    Route::resource('/utilizadores', UtilizadorController::class);
     Route::resource('/imoveis', ImovelController::class);
 });
 

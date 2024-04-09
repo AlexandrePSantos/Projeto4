@@ -1,3 +1,6 @@
+@extends('admin.admin_dashboard')
+@section('admin')
+
 <style>
     table {
         border-collapse: collapse;
@@ -62,3 +65,7 @@
         @endforeach
     </tbody>
 </table>
+
+<a href="{{ route('admin.logout') }}" class="btn btn-danger">Sair</a>
+
+@endsection
