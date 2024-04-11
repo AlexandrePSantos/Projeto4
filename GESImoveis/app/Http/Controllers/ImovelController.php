@@ -63,7 +63,9 @@ class ImovelController extends Controller
      */
     public function destroy(Imovel $imovel)
     {
-        $imovel->delete();
+        $imovel->estado = 'inativo';
+        $imovel->save();
+
         return redirect()->route('imoveis.index');
     }
 }

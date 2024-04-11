@@ -9,14 +9,6 @@
 			<li>
                 <a href="https://www.ftkode.com" target="_blank">FTKode</a>
 			</li>
-			<li>
-				<a href="/definicoes/dados_acesso">Dados de Acesso</a>
-			</li>
-			<li>
-				<a href="/definicoes/formacao/"><i class="fa fa-youtube-play"></i> Formações</a>
-			</li>
-			<li class="logo"><img src="/img/ges-faturacao-white.png" width="100px">
-			</li>
 		</ul>
 	</div>
 </footer>

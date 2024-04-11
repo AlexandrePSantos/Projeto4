@@ -25,6 +25,7 @@ return new class extends Migration
             $table->decimal('val_condominio', 10, 2);
             $table->date('data_aquisicao');
             $table->decimal('preco_compra', 10, 2);
+            $table->enum('estado', ['ativo', 'inativo'])->default('ativo');
             $table->timestamps();
 
             $table->foreign('id_tipo_imovel')->references('id')->on('tipo_imovel');
