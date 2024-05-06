@@ -11,7 +11,7 @@
 
     <div>
         <label for="id_user">ID do Utilizador</label>
-        <input type="number" id="id_user" name="id_user" value="{{ Auth::id() }}" readonly>
+        <input type="hidden" id="id_user" name="id_user" value="{{ Auth::id() }}" readonly>
     </div>
 
     <div>

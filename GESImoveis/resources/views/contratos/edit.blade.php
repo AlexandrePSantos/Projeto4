@@ -2,9 +2,9 @@
 {{-- @extends('proprietario.proprietario_dashboard') --> por criar --}}
 
 @section('admin')
-<p>Index Pagamento Admin</p>
+<p>Editar Contrato Admin</p>
 @endsection
 
 {{-- @section('proprietario')
-<p>Index Inquilino Prop</p> --> por criar
+<p>Editar Inquilino Prop</p> --> por criar
 @endsection --}}

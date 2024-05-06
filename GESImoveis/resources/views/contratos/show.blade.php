@@ -2,7 +2,7 @@
 {{-- @extends('proprietario.proprietario_dashboard') --> por criar --}}
 
 @section('admin')
-<p>Index Pagamento Admin</p>
+<p>Index Contrato Admin</p>
 @endsection
 
 {{-- @section('proprietario')

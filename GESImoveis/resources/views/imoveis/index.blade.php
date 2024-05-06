@@ -2,6 +2,7 @@
 @section('admin')
 
 <a href="{{ route('imoveis.create') }}">Criar Imóvel</a>
+<a href="{{ route('tipo_imovel.index') }}">Tipos de Imóvel</a>
 
 <table>
     <thead>

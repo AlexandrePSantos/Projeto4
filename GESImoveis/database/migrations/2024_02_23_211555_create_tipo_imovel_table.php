@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tipo_imovel', function (Blueprint $table) {
             $table->id();
             $table->string('tipo');
+            $table->enum('estado', ['ativo', 'inativo'])->default('ativo');
         });
     }
 
