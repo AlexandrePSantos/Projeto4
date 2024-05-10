@@ -9,6 +9,8 @@ class Pagamento extends Model
 {
     use HasFactory;
 
+    protected $table = 'contrato';
+
     protected $fillable = [
         'id_contrato',
         'id_user',
