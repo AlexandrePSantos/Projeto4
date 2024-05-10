@@ -1,19 +1,24 @@
 @extends('admin.admin_dashboard')
 @section('admin')
-
+<form action="{{ route('tipo_imovel.store') }}" method="POST">
+    @csrf
+    <label for="descricao">Descrição:</label>
+    <input type="text" id="tipo" name="tipo" required>
+    <button type="submit">Criar</button>
+</form>
 <table>
     <thead>
         <tr>
             <th>ID</th>
-            <th>Nome</th>
+            <th>Tipo</th>
             <th>Ações</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($tipos as $tipo)
+        @foreach ($tiposImovel as $tipo)
             <tr>
                 <td>{{ $tipo->id }}</td>
-                <td>{{ $tipo->nome }}</td>
+                <td>{{ $tipo->tipo }}</td>
                 <td>
                     <a href="{{ route('tipo_imovel.edit', $tipo->id) }}">Editar</a><br>
                     <a href="{{ route('tipo_imovel.destroy', $tipo->id) }}">Inativar</a>

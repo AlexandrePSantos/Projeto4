@@ -6,11 +6,15 @@
 
     <div>
         <label for="id_tipo_imovel">Tipo de Imóvel</label>
-        <input type="number" id="id_tipo_imovel" name="id_tipo_imovel" required>
+        <select id="id_tipo_imovel" name="id_tipo_imovel" required>
+            <option value="" disabled selected>Escolha um tipo de imóvel</option>
+            @foreach ($tiposImovel as $tipo)
+                <option value="{{ $tipo->id }}">{{ $tipo->tipo }}</option>
+            @endforeach
+        </select>
     </div>
 
     <div>
-        <label for="id_user">ID do Utilizador</label>
         <input type="hidden" id="id_user" name="id_user" value="{{ Auth::id() }}" readonly>
     </div>
 

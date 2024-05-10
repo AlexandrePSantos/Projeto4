@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Imovel;
+use App\Models\TipoImovel;
 use Illuminate\Http\Request;
 
 class ImovelController extends Controller
@@ -19,9 +20,15 @@ class ImovelController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    // public function create()
+    // {
+    //     return view('imoveis.create');
+    // }
+
     public function create()
     {
-        return view('imoveis.create');
+        $tiposImovel = TipoImovel::all();
+        return view('imoveis.create', compact('tiposImovel'));
     }
 
     /**

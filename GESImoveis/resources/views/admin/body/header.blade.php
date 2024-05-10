@@ -42,6 +42,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('imoveis.index') }}">Imoveis</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('contrato.index') }}">Contratos</a>
+                            </li>
                         </ul>
                     </div>
                 </nav>

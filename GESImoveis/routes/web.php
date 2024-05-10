@@ -5,6 +5,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InquilinoController;
 use App\Http\Controllers\UtilizadorController;
 use App\Http\Controllers\ImovelController;
+use App\Http\Controllers\TipoContratoController;
+use App\Http\Controllers\TipoImovelController;
+use App\Http\Controllers\ContratoController;
+use App\Http\Controllers\PagamentoController;
+use App\Http\Controllers\FotoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,6 +65,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/tipo_contrato/{tipo_contrato}', [TipoContratoController::class, 'destroy'])->name('tipo_contrato.destroy');
 
     // TipoImovel
+    Route::get('/tipo_imovel', [TipoImovelController::class, 'index'])->name('tipo_imovel.index');
+
     Route::get('/tipo_imovel/create', [TipoImovelController::class, 'create'])->name('tipo_imovel.create');
     Route::post('/tipo_imovel', [TipoImovelController::class, 'store'])->name('tipo_imovel.store');
     Route::get('/tipo_imovel/{tipo_imovel}/edit', [TipoImovelController::class, 'edit'])->name('tipo_imovel.edit');
@@ -100,7 +107,7 @@ Route::middleware(['auth', 'role:admin,proprietario'])->group(function () {
     Route::get('/tipo_contrato', [TipoContratoController::class, 'index'])->name('tipo_contrato.index');
 
     // TipoImovel
-    Route::get('/tipo_imovel', [TipoImovelController::class, 'index'])->name('tipo_imovel.index');
+    // Route::get('/tipo_imovel', [TipoImovelController::class, 'index'])->name('tipo_imovel.index');
 
     // Despesa
     Route::get('/despesa', [DespesaController::class, 'index'])->name('despesa.index');
