@@ -1,7 +1,7 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 
-<a href="{{ route('pagamentos.create') }}">Criar Pagamento</a>
+<a href="{{ route('pagamento.create') }}">Criar Pagamento</a>
 
 <table>
     <thead>
