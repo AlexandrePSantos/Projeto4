@@ -36,7 +36,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('inquilinos.index') }}">Inquilinos</a>
                             </li>
-                            @if(!$profileData->is_proprietario)
+                            @if($profileData->role != 'proprietario')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('utilizadores.index') }}">Utilizadores</a>
                             </li>
