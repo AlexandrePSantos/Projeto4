@@ -36,8 +36,15 @@ class ContratoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Contrato $contrato)
+    public function show($id)
     {
+        $contrato = Contrato::find($id);
+
+        if (!$contrato) {
+            // Handle the case where no contrato with the given ID was found
+            return redirect()->route('contrato.index');
+        }
+
         return view('contrato.show', compact('contrato'));
     }
 

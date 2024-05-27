@@ -1,7 +1,18 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 
-<table>
+<style>
+    .table-bordered {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid black;
+}
+</style>
+
+<table class="table-bordered">
     <thead>
         <tr>
             <th>ID</th>

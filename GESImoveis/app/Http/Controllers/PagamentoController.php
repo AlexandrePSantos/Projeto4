@@ -10,9 +10,14 @@ class PagamentoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pagamentos = Pagamento::all();
+        if ($request->has('contrato')) {
+            $pagamentos = Pagamento::where('id_contrato', $request->contrato)->get();
+        } else {
+            $pagamentos = Pagamento::all();
+        }
+
         return view('pagamento.index', compact('pagamentos'));
     }
 

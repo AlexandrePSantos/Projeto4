@@ -3,7 +3,18 @@
 
 <a href="{{ route('pagamento.create') }}">Criar Pagamento</a>
 
-<table>
+<style>
+    .table-bordered {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid black;
+}
+</style>
+
+<table class="table-bordered">
     <thead>
         <tr>
             <th>ID</th>
@@ -23,9 +34,9 @@
                 <td>{{ $pagamento->metodo_pag }}</td>
                 <td>{{ $pagamento->valor }}</td>
                 <td>
-                    <a href="{{ route('pagamentos.edit', $pagamento->id) }}">Editar</a><br>
-                    <a href="{{ route('pagamentos.destroy', $pagamento->id) }}">Excluir</a><br>
-                    <a href="{{ route('pagamentos.show', $pagamento->id) }}">Detalhes</a>
+                    <a href="{{ route('pagamento.edit', $pagamento->id) }}">Editar</a><br>
+                    <a href="{{ route('pagamento.destroy', $pagamento->id) }}">Excluir</a><br>
+                    <a href="{{ route('pagamento.show', $pagamento->id) }}">Detalhes</a>
                 </td>
             </tr>
         @endforeach

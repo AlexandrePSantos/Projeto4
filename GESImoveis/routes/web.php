@@ -6,7 +6,9 @@ use App\Http\Controllers\InquilinoController;
 use App\Http\Controllers\UtilizadorController;
 use App\Http\Controllers\ImovelController;
 use App\Http\Controllers\TipoContratoController;
+use App\Http\Controllers\TipoDespesaController;
 use App\Http\Controllers\TipoImovelController;
+use App\Http\Controllers\DespesaController;
 use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\PagamentoController;
 use App\Http\Controllers\FotoController;
@@ -23,16 +25,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    if (Auth::check()) {
-        return redirect()->route('dashboard');
-    }
-    return view('auth.login');
+// Route::get('/', function () {
+//     if (Auth::check()) {
+//         return redirect()->route('dashboard');
+//     }
+//     return view('auth.login');
+// });
+
+// Route::get('/dashboard', function () {
+//     return view('admin.index');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
+
+Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return view('auth.login');
+    });
 });
 
 Route::get('/dashboard', function () {
-    return view('admin.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    if (auth()->user()->role == 'proprietario') {
+        return view('proprietario.index');
+    }
+    if (auth()->user()->role == 'admin') {
+        return view('admin.index');
+    }
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -66,7 +89,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // TipoImovel
     Route::get('/tipo_imovel', [TipoImovelController::class, 'index'])->name('tipo_imovel.index');
-
     Route::get('/tipo_imovel/create', [TipoImovelController::class, 'create'])->name('tipo_imovel.create');
     Route::post('/tipo_imovel', [TipoImovelController::class, 'store'])->name('tipo_imovel.store');
     Route::get('/tipo_imovel/{tipo_imovel}/edit', [TipoImovelController::class, 'edit'])->name('tipo_imovel.edit');
@@ -82,6 +104,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin,proprietario'])->group(function () {
+    Route::get('/proprietario/dashboard', [ProprietarioController::class, 'ProprietarioDashboard'])->name('proprietario.dashboard');
+    Route::get('/proprietario/profile', [ProprietarioController::class, 'ProprietarioProfile'])->name('proprietario.profile');
+    // Route::get('/proprietario/logout', [ProprietarioController::class, 'ProprietarioLogout'])->name('proprietario.logout');
+    Route::post('/proprietario/logout', [ProprietarioController::class, 'ProprietarioLogout'])->name('proprietario.logout');
+    Route::post('/proprietario/profile/store', [ProprietarioController::class, 'ProprietarioProfileStore'])->name('proprietario.profile.store');
+});
+
+Route::middleware(['auth', 'role:admin,proprietario'])->group(function () {
     // Inquilinos
     Route::get('/inquilinos', [InquilinoController::class, 'index'])->name('inquilinos.index');
     Route::get('/inquilinos/{inquilino}/edit', [InquilinoController::class, 'edit'])->name('inquilinos.edit');
@@ -90,6 +120,7 @@ Route::middleware(['auth', 'role:admin,proprietario'])->group(function () {
     Route::get('/inquilinos/create', [InquilinoController::class, 'create'])->name('inquilinos.create');
     Route::post('/inquilinos', [InquilinoController::class, 'store'])->name('inquilinos.store');
     Route::get('/inquilinos/{inquilino}', [InquilinoController::class, 'show'])->name('inquilinos.show');
+    Route::get('/inquilinos/{inquilino}/contratos', [InquilinoController::class, 'contratos'])->name('inquilinos.contratos');
 
     // Imoveis
     Route::get('/imoveis', [ImovelController::class, 'index'])->name('imoveis.index');
@@ -102,12 +133,10 @@ Route::middleware(['auth', 'role:admin,proprietario'])->group(function () {
 
     // TipoDespesa
     Route::get('/tipo_despesa', [TipoDespesaController::class, 'index'])->name('tipo_despesa.index');
-
+    // TipoImovel
+    Route::get('/tipo_imovel', [TipoImovelController::class, 'index'])->name('tipo_imovel.index');
     // TipoContrato
     Route::get('/tipo_contrato', [TipoContratoController::class, 'index'])->name('tipo_contrato.index');
-
-    // TipoImovel
-    // Route::get('/tipo_imovel', [TipoImovelController::class, 'index'])->name('tipo_imovel.index');
 
     // Despesa
     Route::get('/despesa', [DespesaController::class, 'index'])->name('despesa.index');
@@ -138,9 +167,12 @@ Route::middleware(['auth', 'role:admin,proprietario'])->group(function () {
 
     // Foto
     Route::resource('foto', FotoController::class);
-
 });
 
 Route::get('/admin/login', function () {
     return redirect()->route('login');
 })->name('admin.login');
+
+Route::get('/proprietario/login', function () {
+    return redirect()->route('login');
+})->name('proprietario.login');

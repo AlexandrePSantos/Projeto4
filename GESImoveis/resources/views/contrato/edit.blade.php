@@ -4,7 +4,7 @@
 @section('admin')
     <h2>Editar Contrato</h2>
 
-    <form action="{{ route('contratos.update', $contrato->id) }}" method="POST">
+    <form action="{{ route('contrato.update', $contrato->id) }}" method="POST">
         @csrf
         @method('PUT')
 

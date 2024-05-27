@@ -6,7 +6,18 @@
 
     <a href="{{ route('inquilinos.create') }}">Adicionar Inquilino</a>
 
-    <table>
+    <style>
+        .table-bordered {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .table-bordered th, .table-bordered td {
+        border: 1px solid black;
+    }
+    </style>
+
+    <table class="table-bordered">
         <thead>
             <tr>
                 <th>Nome</th>
@@ -33,6 +44,7 @@
                     <td>{{ $inquilino->nif }}</td>
                     <td>
                         <a href="{{ route('inquilinos.edit', $inquilino->id) }}">Editar</a>
+                        <a href="{{ route('inquilinos.contratos', $inquilino->id) }}">Ver Contratos</a>
                         <form action="{{ route('inquilinos.destroy', $inquilino->id) }}" method="POST">
                             @csrf
                             @method('DELETE')

@@ -4,7 +4,18 @@
 <a href="{{ route('imoveis.create') }}">Criar Imóvel</a>
 <a href="{{ route('tipo_imovel.index') }}">Tipos de Imóvel</a>
 
-<table>
+<style>
+    .table-bordered {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid black;
+}
+</style>
+
+<table class="table-bordered">
     <thead>
         <tr>
             <th>ID</th>

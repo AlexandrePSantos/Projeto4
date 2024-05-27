@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inquilino;
+use App\Models\Contrato;
 use Illuminate\Http\Request;
 
 class InquilinoController extends Controller
@@ -66,4 +67,14 @@ class InquilinoController extends Controller
         $inquilino->delete();
         return redirect()->route('inquilinos.index');
     }
+
+    public function contratos($inquilinoId)
+    {
+        // Get the contracts for this inquilino
+        $contratos = Contrato::where('id_inquilino', $inquilinoId)->get();
+
+        // Return the contracts to a view
+        return view('contrato.index', ['contrato' => $contratos]);
+    }
+
 }

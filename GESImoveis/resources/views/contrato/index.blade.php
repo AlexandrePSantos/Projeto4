@@ -4,10 +4,19 @@
 @section('admin')
 
 <a href="{{ route('contrato.create') }}">Novo contrato</a>
-{{-- <a href="{{ route('pagamento.index', ['contrato' => $contrato->id]) }}">Pagamentos</a> --}}
-{{-- <a href="{{ route('despesa.index', ['despesa' => $despesa->id]) }}">Despesas</a> --}}
 
-<table>
+<style>
+    .table-bordered {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid black;
+}
+</style>
+
+<table class="table-bordered">
     <thead>
         <tr>
             <th>ID</th>
@@ -29,20 +38,20 @@
             <tr>
                 <td>{{ $contrato->id }}</td>
                 <td>{{ $contrato->id_inquilino }}</td>
-                <td>{{ $contrato->id_imovel }}</td>
+                <td><a href="{{ route('imoveis.show', $contrato->id_imovel) }}">{{ $contrato->id_imovel }}</a></td>
                 <td>{{ $contrato->id_tipo_contrato }}</td>
                 <td>{{ $contrato->data_ini }}</td>
                 <td>{{ $contrato->data_fim }}</td>
                 <td>{{ $contrato->valor }}</td>
                 <td>{{ $contrato->valor_pago }}</td>
                 <td>{{ $contrato->valor - $contrato->valor_pago }}</td>
-                <td>{{ $contrato->perocidade_pag }}</td>
+                <td><a href="{{ route('pagamento.index', ['contrato' => $contrato->id]) }}">{{ $contrato->perocidade_pag }}</a></td>
                 <td>{{ $contrato->estado }}</td>
                 <td>{{ $contrato->data_termino }}</td>
                 <td>
-                    <a href="{{ route('contratos.edit', $contrato->id) }}">Editar</a><br>
-                    <a href="{{ route('contratos.destroy', $contrato->id) }}">Terminar</a><br>
-                    <a href="{{ route('contratos.show', $contrato->id) }}">Detalhes</a>
+                    <a href="{{ route('contrato.edit', $contrato->id) }}">Editar</a><br>
+                    <a href="{{ route('contrato.destroy', $contrato->id) }}">Terminar</a><br>
+                    <a href="{{ route('contrato.show', $contrato->id) }}">Detalhes</a><br>
                 </td>
             </tr>
         @endforeach

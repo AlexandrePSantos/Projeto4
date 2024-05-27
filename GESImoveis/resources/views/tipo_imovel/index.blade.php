@@ -6,7 +6,19 @@
     <input type="text" id="tipo" name="tipo" required>
     <button type="submit">Criar</button>
 </form>
-<table>
+
+<style>
+    .table-bordered {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid black;
+}
+</style>
+
+<table class="table-bordered">
     <thead>
         <tr>
             <th>ID</th>
