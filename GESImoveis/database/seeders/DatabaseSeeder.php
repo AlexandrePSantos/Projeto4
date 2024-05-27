@@ -17,14 +17,11 @@ class DatabaseSeeder extends Seeder
             TipoDespesaTableSeeder::class,
             TipoImovelTableSeeder::class,
             TipoContratoTableSeeder::class,
-
             InquilinoTableSeeder::class,
             ImovelTableSeeder::class,
             ContratoTableSeeder::class,
             DespesaTableSeeder::class,
-
             PagamentoTableSeeder::class,
-
         ]);
     }
 }

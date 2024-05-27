@@ -1,5 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+
 <form action="{{ route('tipo_imovel.store') }}" method="POST">
     @csrf
     <label for="descricao">Descrição:</label>

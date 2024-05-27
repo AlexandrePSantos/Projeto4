@@ -36,9 +36,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('inquilinos.index') }}">Inquilinos</a>
                             </li>
+                            @if(!$profileData->is_proprietario)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('utilizadores.index') }}">Utilizadores</a>
                             </li>
+                            @endif
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('imoveis.index') }}">Imoveis</a>
                             </li>

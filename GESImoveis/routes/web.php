@@ -25,23 +25,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     if (Auth::check()) {
-//         return redirect()->route('dashboard');
-//     }
-//     return view('auth.login');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('admin.index');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
 Route::middleware('guest')->group(function () {
     Route::get('/', function () {
         return view('auth.login');
@@ -49,10 +32,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::get('/dashboard', function () {
-    if (auth()->user()->role == 'proprietario') {
-        return view('proprietario.index');
-    }
-    if (auth()->user()->role == 'admin') {
+    if (in_array(auth()->user()->role, ['admin', 'proprietario'])) {
         return view('admin.index');
     }
 })->middleware(['auth'])->name('dashboard');
@@ -66,11 +46,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
-    Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
-    Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
-    Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
-
     // Utilizadores
     Route::get('/utilizadores', [UtilizadorController::class, 'index'])->name('utilizadores.index');
     Route::get('/utilizadores/{utilizador}/edit', [UtilizadorController::class, 'edit'])->name('utilizadores.edit');
@@ -104,14 +79,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin,proprietario'])->group(function () {
-    Route::get('/proprietario/dashboard', [ProprietarioController::class, 'ProprietarioDashboard'])->name('proprietario.dashboard');
-    Route::get('/proprietario/profile', [ProprietarioController::class, 'ProprietarioProfile'])->name('proprietario.profile');
-    // Route::get('/proprietario/logout', [ProprietarioController::class, 'ProprietarioLogout'])->name('proprietario.logout');
-    Route::post('/proprietario/logout', [ProprietarioController::class, 'ProprietarioLogout'])->name('proprietario.logout');
-    Route::post('/proprietario/profile/store', [ProprietarioController::class, 'ProprietarioProfileStore'])->name('proprietario.profile.store');
-});
+    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
+    Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+    Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
 
-Route::middleware(['auth', 'role:admin,proprietario'])->group(function () {
+    Route::get('/proprietario/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+    Route::get('/proprietario/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
+    Route::get('/proprietario/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+    Route::post('/proprietario/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+
     // Inquilinos
     Route::get('/inquilinos', [InquilinoController::class, 'index'])->name('inquilinos.index');
     Route::get('/inquilinos/{inquilino}/edit', [InquilinoController::class, 'edit'])->name('inquilinos.edit');
@@ -172,7 +149,3 @@ Route::middleware(['auth', 'role:admin,proprietario'])->group(function () {
 Route::get('/admin/login', function () {
     return redirect()->route('login');
 })->name('admin.login');
-
-Route::get('/proprietario/login', function () {
-    return redirect()->route('login');
-})->name('proprietario.login');
