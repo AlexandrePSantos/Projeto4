@@ -4,7 +4,8 @@
 @section('admin')
 
 <a href="{{ route('contrato.create') }}">Novo contrato</a>
-<a href="{{ route('pagamento.index') }}">Pagamentos</a>
+{{-- <a href="{{ route('pagamento.index', ['contrato' => $contrato->id]) }}">Pagamentos</a> --}}
+{{-- <a href="{{ route('despesa.index', ['despesa' => $despesa->id]) }}">Despesas</a> --}}
 
 <table>
     <thead>

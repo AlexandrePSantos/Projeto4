@@ -9,6 +9,8 @@ class Despesa extends Model
 {
     use HasFactory;
 
+    protected $table = 'despesa';
+
     protected $fillable = [
         'id_imovel',
         'id_user',

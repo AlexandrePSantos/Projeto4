@@ -45,9 +45,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('contrato.index') }}">Contratos</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('pagamento.index') }}">Pagamento</a>
-                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -55,6 +52,3 @@
         </div>
     </div>
 </div>
-
-
-

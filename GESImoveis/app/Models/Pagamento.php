@@ -9,23 +9,17 @@ class Pagamento extends Model
 {
     use HasFactory;
 
-    protected $table = 'contrato';
+    protected $table = 'pagamento';
 
     protected $fillable = [
         'id_contrato',
-        'id_user',
         'data_pag',
-        'valor',
-        'estado'
+        'metodo_pag',
+        'valor'
     ];
 
     public function contrato()
     {
         return $this->belongsTo(Contrato::class, 'id_contrato');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id_user');
     }
 }

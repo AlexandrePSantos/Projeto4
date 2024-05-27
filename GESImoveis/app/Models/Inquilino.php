@@ -9,6 +9,8 @@ class Inquilino extends Model
 {
     use HasFactory;
 
+    protected $table = 'inquilino';
+
     protected $fillable = [
         'nome',
         'apelido',
