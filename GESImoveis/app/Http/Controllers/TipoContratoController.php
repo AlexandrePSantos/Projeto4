@@ -13,6 +13,8 @@ use App\Models\TipoImovel;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
+
 class TipoContratoController extends Controller
 {
     /**
@@ -37,6 +39,17 @@ class TipoContratoController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'tipo' => 'required|unique:tipo_contrato',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('tipo_contrato/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // The TipoContrato is valid, store it in the database...
         $tipoContrato = TipoContrato::create($request->all());
         return redirect()->route('tipo_contrato.index');
     }
@@ -62,6 +75,17 @@ class TipoContratoController extends Controller
      */
     public function update(Request $request, TipoContrato $tipoContrato)
     {
+        $validator = Validator::make($request->all(), [
+            'tipo' => 'required|unique:tipo_contrato,tipo,' . $tipoContrato->id,
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('tipo_contrato/' . $tipoContrato->id . '/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // The TipoContrato is valid, update it in the database...
         $tipoContrato->update($request->all());
         return redirect()->route('tipo_contrato.index');
     }

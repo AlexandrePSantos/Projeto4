@@ -9,18 +9,8 @@ class Imovel extends Model
 {
     use HasFactory;
 
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
     protected $table = 'imovel';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'id_tipo_imovel',
         'id_user',
@@ -36,17 +26,11 @@ class Imovel extends Model
         'preco_compra'
     ];
 
-    /**
-     * Get the user that owns the imovel.
-     */
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    /**
-     * Get the tipo_imovel that the imovel belongs to.
-     */
     public function tipo_imovel()
     {
         return $this->belongsTo(TipoImovel::class, 'id_tipo_imovel');

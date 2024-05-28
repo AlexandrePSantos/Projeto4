@@ -22,4 +22,9 @@ class Inquilino extends Model
         'codigo_postal',
         'nif',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

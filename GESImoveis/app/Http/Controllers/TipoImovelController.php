@@ -13,6 +13,8 @@ use App\Models\TipoImovel;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
+
 class TipoImovelController extends Controller
 {
     /**
@@ -37,6 +39,17 @@ class TipoImovelController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'tipo' => 'required|unique:tipo_imovel',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('tipo_imovel/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // The TipoImovel is valid, store it in the database...
         $tipoImovel = TipoImovel::create($request->all());
         return redirect()->route('tipo_imovel.index');
     }
@@ -62,6 +75,17 @@ class TipoImovelController extends Controller
      */
     public function update(Request $request, TipoImovel $tipoImovel)
     {
+        $validator = Validator::make($request->all(), [
+            'tipo' => 'required|unique:tipo_imovel,tipo,' . $tipoImovel->id,
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('tipo_imovel/' . $tipoImovel->id . '/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // The TipoImovel is valid, update it in the database...
         $tipoImovel->update($request->all());
         return redirect()->route('tipo_imovel.index');
     }

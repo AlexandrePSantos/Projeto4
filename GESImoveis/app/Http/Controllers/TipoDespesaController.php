@@ -13,6 +13,8 @@ use App\Models\TipoImovel;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
+
 class TipoDespesaController extends Controller
 {
     /**
@@ -37,8 +39,17 @@ class TipoDespesaController extends Controller
      */
     public function store(Request $request)
     {
-        $tipoDespesa = TipoDespesa::create($request->all());
-        return redirect()->route('tipo_despesa.index');
+        $validator = Validator::make($request->all(), [
+            'tipo' => 'required|unique:tipo_despesa',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('tipo_despesa/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // The TipoDespesa is valid, store it in the database...
     }
 
     /**
@@ -62,8 +73,17 @@ class TipoDespesaController extends Controller
      */
     public function update(Request $request, TipoDespesa $tipoDespesa)
     {
-        $tipoDespesa->update($request->all());
-        return redirect()->route('tipo_despesa.index');
+        $validator = Validator::make($request->all(), [
+            'tipo' => 'required|unique:tipo_despesa,tipo,' . $tipoDespesa->id,
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('tipo_despesa/' . $tipoDespesa->id . '/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // The TipoDespesa is valid, update it in the database...
     }
 
     /**

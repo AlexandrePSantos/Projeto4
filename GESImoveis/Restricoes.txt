@@ -1,26 +1,37 @@
 Tabela: TipoDespesa
 Cada tipo de despesa deve ter um nome único.
+
 Tabela: TipoImovel
 Cada tipo de imóvel deve ter um nome único.
+
 Tabela: TipoContrato
 Cada tipo de contrato deve ter um nome único.
+
 Tabela: Inquilino
-Email deve ser único.
-Telefone deve ser um número válido (opcional, mas se presente, deve seguir um padrão específico).
+O email do inquilino deve ser único.
+O NIF (Número de Identificação Fiscal) deve ser único, se fornecido.
+
 Tabela: Imovel
 Cada imóvel deve ter um endereço único.
 Tipo de imóvel deve ser válido e existente na tabela tipo_imovel.
+O preço de compra do imóvel (preco_compra) deve ser maior que zero.
+A área do imóvel (area) deve ser maior que zero.
+O valor do seguro (val_seguro), IMI (val_imi) e condomínio (val_condominio) devem ser maiores ou iguais a zero.
+
 Tabela: Contrato
 Um contrato deve ser associado a um inquilino, imóvel, tipo de contrato e usuário válidos.
 Um imóvel só pode ter um contrato ativo (verificar se há outro contrato com data_fim não preenchida ou posterior à data atual).
-data_ini deve ser anterior ou igual a data_fim.
-valor deve ser maior que 0.
-valor_pago não pode ser maior que valor.
-estado deve ser um valor válido predefinido (e.g., "ativo", "finalizado", "cancelado").
+O valor do contrato (valor) deve ser maior que zero.
+A data de início (data_ini) deve ser anterior ou igual à data de término (data_fim).
+O estado do contrato (estado) deve ser válido (por exemplo, "ativo", "inativo", "cancelado").
+A data de término (data_termino) deve ser posterior ou igual à data de início (data_ini).
+O valor pago (valor_pago) não pode ser maior que o valor total do contrato.
+
 Tabela: Despesa
-Uma despesa deve ser associada a um imóvel e tipo de despesa válidos.
-O valor da despesa deve ser maior que 0.
-A data da despesa não pode ser no futuro.
+Uma despesa deve estar associada a um imóvel, utilizador e tipo de despesa válidos.
+O valor da despesa (valor) deve ser maior que zero.
+A data da despesa (data) não pode estar no futuro.
+
 Tabela: Pagamento
 Um pagamento deve ser associado a um contrato válido.
 O valor do pagamento não pode exceder o valor total do contrato menos o valor já pago (valor_pago).
