@@ -14,6 +14,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Validator;
+
 class ImovelController extends Controller
 {
     /**
@@ -44,6 +46,23 @@ class ImovelController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'endereco' => 'required|unique:imovel',
+            'tipo_imovel_id' => 'required|exists:tipo_imovel,id',
+            'preco_compra' => 'required|gt:0',
+            'area' => 'required|gt:0',
+            'val_seguro' => 'required|gte:0',
+            'val_imi' => 'required|gte:0',
+            'val_condominio' => 'required|gte:0',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('imoveis/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // The Imovel is valid, store it in the database...
         $imovel = Imovel::create($request->all());
         return redirect()->route('imoveis.index');
     }
@@ -77,10 +96,23 @@ class ImovelController extends Controller
      */
     public function update(Request $request, Imovel $imovel)
     {
-        if (Auth::user()->role == 'proprietario' && $imovel->id_user != Auth::id()) {
-            return redirect()->route('imoveis.index');
+        $validator = Validator::make($request->all(), [
+            'endereco' => 'required|unique:imovel,endereco,' . $imovel->id,
+            'tipo_imovel_id' => 'required|exists:tipo_imovel,id',
+            'preco_compra' => 'required|gt:0',
+            'area' => 'required|gt:0',
+            'val_seguro' => 'required|gte:0',
+            'val_imi' => 'required|gte:0',
+            'val_condominio' => 'required|gte:0',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('imoveis/' . $imovel->id . '/edit')
+                        ->withErrors($validator)
+                        ->withInput();
         }
 
+        // The Imovel is valid, update it in the database...
         $imovel->update($request->all());
         return redirect()->route('imoveis.index');
     }

@@ -13,6 +13,9 @@ use App\Models\TipoImovel;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+
 class PagamentoController extends Controller
 {
     /**
@@ -42,6 +45,29 @@ class PagamentoController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'contrato_id' => 'required|exists:contrato,id',
+            'valor' => [
+                'required',
+                'gt:0',
+                function ($attribute, $value, $fail) use ($request) {
+                    $contrato = Contrato::find($request->contrato_id);
+                    $totalPago = Pagamento::where('contrato_id', $request->contrato_id)->sum('valor');
+                    if ($value > ($contrato->valor_total - $totalPago)) {
+                        $fail($attribute.' exceeds the remaining contract value.');
+                    }
+                },
+            ],
+            'data' => 'required|date|before_or_equal:today',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('pagamento/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // The Pagamento is valid, store it in the database...
         $pagamento = Pagamento::create($request->all());
         return redirect()->route('pagamento.index');
     }
@@ -67,6 +93,29 @@ class PagamentoController extends Controller
      */
     public function update(Request $request, Pagamento $pagamento)
     {
+        $validator = Validator::make($request->all(), [
+            'contrato_id' => 'required|exists:contrato,id',
+            'valor' => [
+                'required',
+                'gt:0',
+                function ($attribute, $value, $fail) use ($request, $pagamento) {
+                    $contrato = Contrato::find($request->contrato_id);
+                    $totalPago = Pagamento::where('contrato_id', $request->contrato_id)->where('id', '!=', $pagamento->id)->sum('valor');
+                    if ($value > ($contrato->valor_total - $totalPago)) {
+                        $fail($attribute.' exceeds the remaining contract value.');
+                    }
+                },
+            ],
+            'data' => 'required|date|before_or_equal:today',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('pagamento/' . $pagamento->id . '/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // The Pagamento is valid, update it in the database...
         $pagamento->update($request->all());
         return redirect()->route('pagamento.index');
     }

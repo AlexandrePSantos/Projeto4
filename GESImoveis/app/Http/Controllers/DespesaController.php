@@ -13,6 +13,9 @@ use App\Models\TipoImovel;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+
 class DespesaController extends Controller
 {
     /**
@@ -37,6 +40,21 @@ class DespesaController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'imovel_id' => 'required|exists:imovel,id',
+            'user_id' => 'required|exists:users,id',
+            'tipo_despesa_id' => 'required|exists:tipo_despesa,id',
+            'valor' => 'required|gt:0',
+            'data' => 'required|date|before_or_equal:today',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('despesa/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // The Despesa is valid, store it in the database...
         $despesa = Despesa::create($request->all());
         return redirect()->route('despesa.index');
     }
@@ -62,6 +80,21 @@ class DespesaController extends Controller
      */
     public function update(Request $request, Despesa $despesa)
     {
+        $validator = Validator::make($request->all(), [
+            'imovel_id' => 'required|exists:imovel,id',
+            'user_id' => 'required|exists:users,id',
+            'tipo_despesa_id' => 'required|exists:tipo_despesa,id',
+            'valor' => 'required|gt:0',
+            'data' => 'required|date|before_or_equal:today',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('despesa/' . $despesa->id . '/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // The Despesa is valid, update it in the database...
         $despesa->update($request->all());
         return redirect()->route('despesa.index');
     }

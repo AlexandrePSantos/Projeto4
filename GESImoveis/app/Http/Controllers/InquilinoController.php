@@ -14,6 +14,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Validator;
+
 class InquilinoController extends Controller
 {
     /**
@@ -43,6 +45,18 @@ class InquilinoController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|unique:inquilino',
+            'NIF' => 'nullable|unique:inquilino',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('inquilinos/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // The Inquilino is valid, store it in the database...
         $inquilino = Inquilino::create($request->all());
         return redirect()->route('inquilinos.index');
     }
@@ -76,10 +90,18 @@ class InquilinoController extends Controller
      */
     public function update(Request $request, Inquilino $inquilino)
     {
-        if (Auth::user()->role == 'proprietario' && $inquilino->id_user != Auth::id()) {
-            return redirect()->route('inquilinos.index');
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|unique:inquilino,email,' . $inquilino->id,
+            'NIF' => 'nullable|unique:inquilino,NIF,' . $inquilino->id,
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('inquilinos/' . $inquilino->id . '/edit')
+                        ->withErrors($validator)
+                        ->withInput();
         }
 
+        // The Inquilino is valid, update it in the database...
         $inquilino->update($request->all());
         return redirect()->route('inquilinos.index');
     }
