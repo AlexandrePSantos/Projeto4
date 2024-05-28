@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contrato;
+use App\Models\Despesa;
 use App\Models\Imovel;
+use App\Models\Inquilino;
+use App\Models\Pagamento;
+use App\Models\TipoContrato;
+use App\Models\TipoDespesa;
 use App\Models\TipoImovel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

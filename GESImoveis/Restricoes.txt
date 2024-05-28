@@ -1,0 +1,27 @@
+Tabela: TipoDespesa
+Cada tipo de despesa deve ter um nome único.
+Tabela: TipoImovel
+Cada tipo de imóvel deve ter um nome único.
+Tabela: TipoContrato
+Cada tipo de contrato deve ter um nome único.
+Tabela: Inquilino
+Email deve ser único.
+Telefone deve ser um número válido (opcional, mas se presente, deve seguir um padrão específico).
+Tabela: Imovel
+Cada imóvel deve ter um endereço único.
+Tipo de imóvel deve ser válido e existente na tabela tipo_imovel.
+Tabela: Contrato
+Um contrato deve ser associado a um inquilino, imóvel, tipo de contrato e usuário válidos.
+Um imóvel só pode ter um contrato ativo (verificar se há outro contrato com data_fim não preenchida ou posterior à data atual).
+data_ini deve ser anterior ou igual a data_fim.
+valor deve ser maior que 0.
+valor_pago não pode ser maior que valor.
+estado deve ser um valor válido predefinido (e.g., "ativo", "finalizado", "cancelado").
+Tabela: Despesa
+Uma despesa deve ser associada a um imóvel e tipo de despesa válidos.
+O valor da despesa deve ser maior que 0.
+A data da despesa não pode ser no futuro.
+Tabela: Pagamento
+Um pagamento deve ser associado a um contrato válido.
+O valor do pagamento não pode exceder o valor total do contrato menos o valor já pago (valor_pago).
+A data do pagamento não pode ser no futuro.
