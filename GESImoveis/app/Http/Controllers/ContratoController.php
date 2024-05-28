@@ -48,7 +48,16 @@ class ContratoController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'inquilino_id' => 'required|exists:inquilino,id',
+            'inquilino_id' => [
+                'required',
+                'exists:inquilino,id',
+                function ($attribute, $value, $fail) {
+                    $activeContrato = Contrato::where('inquilino_id', $value)->first();
+                    if ($activeContrato) {
+                        $fail($attribute.' already has a contract.');
+                    }
+                },
+            ],
             'imovel_id' => [
                 'required',
                 'exists:imovel,id',
@@ -116,7 +125,16 @@ class ContratoController extends Controller
     public function update(Request $request, Contrato $contrato)
     {
         $validator = Validator::make($request->all(), [
-            'inquilino_id' => 'required|exists:inquilino,id',
+            'inquilino_id' => [
+                'required',
+                'exists:inquilino,id',
+                function ($attribute, $value, $fail) use ($contrato) {
+                    $activeContrato = Contrato::where('inquilino_id', $value)->where('id', '!=', $contrato->id)->first();
+                    if ($activeContrato) {
+                        $fail($attribute.' already has a contract.');
+                    }
+                },
+            ],
             'imovel_id' => [
                 'required',
                 'exists:imovel,id',
