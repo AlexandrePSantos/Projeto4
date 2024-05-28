@@ -13,4 +13,16 @@
         @method('DELETE')
         <input type="submit" value="Remover">
     </form>
+
+    <form action="{{ route('pagamento.emitirFatura', $pagamento->id) }}" method="POST">
+        @csrf
+        <input type="email" name="email" required>
+        <input type="submit" value="Emitir Fatura" class="btn btn-primary">
+    </form>
+
+    @if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+@endif
 @endsection

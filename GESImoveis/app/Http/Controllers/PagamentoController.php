@@ -11,10 +11,11 @@ use App\Models\TipoContrato;
 use App\Models\TipoDespesa;
 use App\Models\TipoImovel;
 use App\Models\User;
-use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Http;
 
 class PagamentoController extends Controller
 {
@@ -127,5 +128,64 @@ class PagamentoController extends Controller
     {
         $pagamento->delete();
         return redirect()->route('pagamento.index');
+    }
+
+    /**
+     * Método que realiza uma chamada para a emissão de uma fatura através da API GESFaturacao.
+     */
+    public function emitirFatura(Request $request, $id)
+    {
+        $email = $request->input('email');
+        $baseURL = 'https://devipvc.gesfaturacao.pt/gesfaturacao/server/webservices/api/mobile/v1.0.2/';
+        $authURL = $baseURL . 'authentication';
+        $validateTokenURL = $baseURL . 'validate-token';
+        $sendEmailURL = $baseURL . 'send-email';
+
+        // Login
+        $response = Http::asForm()->post($authURL, [
+            'username' => 'ipvc',
+            'password' => 'ipvc',
+        ]);
+
+        $token = $response->json()['_token'];
+
+        // Validate token
+        $response = Http::withHeaders([
+            'Authorization' => $token,
+        ])->post($validateTokenURL);
+
+        // Validate version
+        $response = Http::asForm()->withHeaders([
+            'Authorization' => 'Basic UjBWVFJrRlVWVkpCUTBGUDpNWFk0T0dKaWQyZHJaWEkzYmpreWFXUTNNVGs9',
+        ])->post('https://licencas.gesfaturacao.pt/server/auto/validate-version', [
+            'version' => '6',
+            'os' => 'android',
+        ]);
+
+        // Send email
+        $responseEmail = Http::asForm()->withHeaders([
+            'Authorization' => $token,
+            'Cookie' => 'PHPSESSID=ce208a4d6568f8a85bbb09329fa0a248',
+        ])->post($sendEmailURL, [
+            'email' => $email,
+            'type' => 'OR',
+            'document' => '14',
+        ]);
+
+        $jsonResponse = $responseEmail->json();
+
+        // Dump and die to print the JSON response
+        // dd($jsonResponse);
+
+        // Your logic to emit the fatura
+
+        if (!$response->failed() && !$responseEmail->failed()) {
+            // Flash a success message to the session
+            session()->flash('message', 'Fatura was sent successfully!');
+
+            // Redirect back to the same page
+            return redirect()->back();
+        }
+
     }
 }
