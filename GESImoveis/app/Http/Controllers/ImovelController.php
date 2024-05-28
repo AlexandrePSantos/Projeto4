@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Imovel;
 use App\Models\TipoImovel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ImovelController extends Controller
 {
@@ -13,18 +14,18 @@ class ImovelController extends Controller
      */
     public function index()
     {
-        $imoveis = Imovel::all();
+        if (Auth::user()->role == 'proprietario') {
+            $imoveis = Imovel::where('id_user', Auth::id())->get();
+        } else {
+            $imoveis = Imovel::all();
+        }
+
         return view('imoveis.index', compact('imoveis'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    // public function create()
-    // {
-    //     return view('imoveis.create');
-    // }
-
     public function create()
     {
         $tiposImovel = TipoImovel::all();
@@ -45,6 +46,10 @@ class ImovelController extends Controller
      */
     public function show(Imovel $imovel)
     {
+        if (Auth::user()->role == 'proprietario' && $imovel->id_user != Auth::id()) {
+            return redirect()->route('imoveis.index');
+        }
+
         return view('imoveis.show', compact('imovel'));
     }
 
@@ -53,6 +58,10 @@ class ImovelController extends Controller
      */
     public function edit(Imovel $imovel)
     {
+        if (Auth::user()->role == 'proprietario' && $imovel->id_user != Auth::id()) {
+            return redirect()->route('imoveis.index');
+        }
+
         return view('imoveis.edit', compact('imovel'));
     }
 
@@ -61,6 +70,10 @@ class ImovelController extends Controller
      */
     public function update(Request $request, Imovel $imovel)
     {
+        if (Auth::user()->role == 'proprietario' && $imovel->id_user != Auth::id()) {
+            return redirect()->route('imoveis.index');
+        }
+
         $imovel->update($request->all());
         return redirect()->route('imoveis.index');
     }
@@ -70,6 +83,10 @@ class ImovelController extends Controller
      */
     public function destroy(Imovel $imovel)
     {
+        if (Auth::user()->role == 'proprietario' && $imovel->id_user != Auth::id()) {
+            return redirect()->route('imoveis.index');
+        }
+
         $imovel->estado = 'inativo';
         $imovel->save();
 

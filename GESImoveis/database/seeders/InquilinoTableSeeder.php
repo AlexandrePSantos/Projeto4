@@ -11,6 +11,7 @@ class InquilinoTableSeeder extends Seeder
     {
         DB::table('inquilino')->insert([
             [
+                'id_user' => 2,
                 'nome' => 'John',
                 'apelido' => 'Doe',
                 'email' => 'john@example.com',
@@ -21,6 +22,7 @@ class InquilinoTableSeeder extends Seeder
                 'nif' => '123456789'
             ],
             [
+                'id_user' => 3,
                 'nome' => 'Jane',
                 'apelido' => 'Doe',
                 'email' => 'jane@example.com',

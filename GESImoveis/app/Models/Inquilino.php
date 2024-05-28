@@ -12,6 +12,7 @@ class Inquilino extends Model
     protected $table = 'inquilino';
 
     protected $fillable = [
+        'id_user',
         'nome',
         'apelido',
         'email',

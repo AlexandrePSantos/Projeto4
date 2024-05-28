@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contrato;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContratoController extends Controller
 {
@@ -12,7 +13,12 @@ class ContratoController extends Controller
      */
     public function index()
     {
-        $contrato = Contrato::all();
+        if (Auth::user()->role == 'proprietario') {
+            $contrato = Contrato::where('id_user', Auth::id())->get();
+        } else {
+            $contrato = Contrato::all();
+        }
+
         return view('contrato.index', compact('contrato'));
     }
 
@@ -40,8 +46,9 @@ class ContratoController extends Controller
     {
         $contrato = Contrato::find($id);
 
-        if (!$contrato) {
+        if (!$contrato || (Auth::user()->role == 'proprietario' && $contrato->id_user != Auth::id())) {
             // Handle the case where no contrato with the given ID was found
+            // or the user is a 'proprietario' and does not own this contrato
             return redirect()->route('contrato.index');
         }
 
@@ -53,6 +60,10 @@ class ContratoController extends Controller
      */
     public function edit(Contrato $contrato)
     {
+        if (Auth::user()->role == 'proprietario' && $contrato->id_user != Auth::id()) {
+            return redirect()->route('contrato.index');
+        }
+
         return view('contrato.edit', compact('contrato'));
     }
 
@@ -61,6 +72,10 @@ class ContratoController extends Controller
      */
     public function update(Request $request, Contrato $contrato)
     {
+        if (Auth::user()->role == 'proprietario' && $contrato->id_user != Auth::id()) {
+            return redirect()->route('contrato.index');
+        }
+
         $contrato->update($request->all());
         return redirect()->route('contrato.index');
     }
@@ -70,6 +85,10 @@ class ContratoController extends Controller
      */
     public function destroy(Contrato $contrato)
     {
+        if (Auth::user()->role == 'proprietario' && $contrato->id_user != Auth::id()) {
+            return redirect()->route('contrato.index');
+        }
+
         $contrato->delete();
         return redirect()->route('contrato.index');
     }

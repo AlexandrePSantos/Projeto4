@@ -26,7 +26,7 @@ class ImovelTableSeeder extends Seeder
             ],
             [
                 'id_tipo_imovel' => 2,
-                'id_user' => 1,
+                'id_user' => 3,
                 'area' => 200,
                 'morada' => '456 Avenue',
                 'andar' => 2,

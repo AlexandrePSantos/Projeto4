@@ -15,6 +15,7 @@ class Contrato extends Model
         'id_inquilino',
         'id_imovel',
         'id_tipo_contrato',
+        'id_user',
         'data_ini',
         'data_fim',
         'valor',
@@ -37,5 +38,10 @@ class Contrato extends Model
     public function tipoContrato()
     {
         return $this->belongsTo(TipoContrato::class, 'id_tipo_contrato');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
     }
 }

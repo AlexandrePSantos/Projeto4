@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Inquilino;
 use App\Models\Contrato;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InquilinoController extends Controller
 {
@@ -13,7 +14,12 @@ class InquilinoController extends Controller
      */
     public function index()
     {
-        $inquilinos = Inquilino::all();
+        if (Auth::user()->role == 'proprietario') {
+            $inquilinos = Inquilino::where('id_user', Auth::id())->get();
+        } else {
+            $inquilinos = Inquilino::all();
+        }
+
         return view('inquilinos.index', compact('inquilinos'));
     }
 
@@ -39,6 +45,10 @@ class InquilinoController extends Controller
      */
     public function show(Inquilino $inquilino)
     {
+        if (Auth::user()->role == 'proprietario' && $inquilino->id_user != Auth::id()) {
+            return redirect()->route('inquilinos.index');
+        }
+
         return view('inquilinos.show', compact('inquilino'));
     }
 
@@ -47,6 +57,10 @@ class InquilinoController extends Controller
      */
     public function edit(Inquilino $inquilino)
     {
+        if (Auth::user()->role == 'proprietario' && $inquilino->id_user != Auth::id()) {
+            return redirect()->route('inquilinos.index');
+        }
+
         return view('inquilinos.edit', compact('inquilino'));
     }
 
@@ -55,6 +69,10 @@ class InquilinoController extends Controller
      */
     public function update(Request $request, Inquilino $inquilino)
     {
+        if (Auth::user()->role == 'proprietario' && $inquilino->id_user != Auth::id()) {
+            return redirect()->route('inquilinos.index');
+        }
+
         $inquilino->update($request->all());
         return redirect()->route('inquilinos.index');
     }
@@ -64,6 +82,10 @@ class InquilinoController extends Controller
      */
     public function destroy(Inquilino $inquilino)
     {
+        if (Auth::user()->role == 'proprietario' && $inquilino->id_user != Auth::id()) {
+            return redirect()->route('inquilinos.index');
+        }
+
         $inquilino->delete();
         return redirect()->route('inquilinos.index');
     }
@@ -72,6 +94,11 @@ class InquilinoController extends Controller
     {
         // Get the contracts for this inquilino
         $contratos = Contrato::where('id_inquilino', $inquilinoId)->get();
+
+        // If the user is a 'proprietario' and does not own this inquilino, redirect them
+        if (Auth::user()->role == 'proprietario' && $contratos->first()->inquilino->id_user != Auth::id()) {
+            return redirect()->route('inquilinos.index');
+        }
 
         // Return the contracts to a view
         return view('contrato.index', ['contrato' => $contratos]);
