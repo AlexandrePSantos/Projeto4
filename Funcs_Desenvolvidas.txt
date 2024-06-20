@@ -9,11 +9,3 @@ Criar controller        ->   php artisan make:controller nomeController
 Link acesso:
 
 http://localhost:8000/
-
-Desenvolvido:
-
-Login;
-Registar; *
-Editar; *
-
-* -> ainda é necessário incluir alguns campos
