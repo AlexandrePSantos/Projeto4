@@ -1,0 +1,92 @@
+/* dash.css */
+
+/* Estilos gerais */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.page-content {
+    padding: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/* Cabeçalho da página */
+.page-content h4 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+/* Estilos dos cards */
+.card {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+.card p.text-muted {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* Gráficos */
+#monthlySalesChart {
+    height: 50px; /* Altura fixa para o gráfico */
+    width: 100%;
+}
+
+/* Layout responsivo */
+@media (max-width: 767.98px) {
+    .page-content {
+        padding: 10px;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-title {
+        font-size: 16px;
+    }
+
+    .card p.text-muted {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .page-content {
+        padding: 15px;
+    }
+
+    .card-body {
+        padding: 18px;
+    }
+
+    .card-title {
+        font-size: 17px;
+    }
+
+    .card p.text-muted {
+        font-size: 13px;
+    }
+}

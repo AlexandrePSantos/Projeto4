@@ -10,6 +10,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <!-- End Stylesheets -->
+
 </head>
 
 <body>
@@ -24,7 +25,7 @@
                 $id = Auth::user()->id;
                 $profileData = App\Models\User::find($id);
             @endphp
-            <p>Bem Vindo ao GESImoveis, <a href="{{ route('admin.profile') }}" aria-haspopup="true" aria-expanded="false">{{ $profileData->name }}</a></p>
+            <p>Bem Vindo ao GESImoveis, <a href="{{ route('admin.profile') }}" aria-haspopup="true" aria-expanded="false">{{ $profileData->name }}.</a></p>
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">

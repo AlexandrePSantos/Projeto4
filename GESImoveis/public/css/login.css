@@ -1,9 +1,22 @@
+/* login.css */
+
 /* Estilos Personalizados */
 body {
     background-color: #ffffff;
     font-family: 'Open Sans', sans-serif;
     color: #555;
-    padding-top: 50px; /* Espaçamento superior da página */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 
 .logo-div {
@@ -21,10 +34,11 @@ body {
     border: 1px solid #ddd;
     border-radius: 10px; /* Cantos mais arredondados */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    padding: 20px;
-    margin-top: 40px; /* Aumenta o espaçamento do topo */
-    max-width: 400px; /* Largura máxima do formulário */
-    margin: 0 auto; /* Centraliza horizontalmente */
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 15px;
+    width: 100%;
+    margin-bottom: 40px; /* Espaçamento na parte inferior */
 }
 
 .form-group {
@@ -67,4 +81,33 @@ body {
     border-color: #d58512;
 }
 
+/* Estilos para o rodapé */
+footer {
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: #888;
+    text-align: center; /* Centraliza texto no rodapé */
+    background-color: #d4d4d4; /* Fundo branco para o rodapé */
+    padding: 10px 20px; /* Espaçamento interno com padding à esquerda e direita */
+    border-top: 1px solid #ddd; /* Linha superior */
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: auto; /* Empurra o rodapé para o fim da página */
+}
 
+footer p {
+    margin: 0; /* Remove margens */
+    font-size: 14px; /* Tamanho da fonte */
+    color: #888; /* Cor do texto */
+}
+
+footer a.options-link {
+    color: #f0ad4e; /* Cor dos links */
+    text-decoration: none; /* Remove sublinhado */
+}
+
+footer a.options-link:hover {
+    color: #ec971f; /* Cor dos links ao passar o mouse */
+}

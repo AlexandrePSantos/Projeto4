@@ -1,26 +1,29 @@
-/* header.css */
-
 /* Estilos para o cabeçalho */
 header {
     border-radius: 5px;
     background-color: #d4d4d4; /* Fundo branco */
     font-family: 'Open Sans', sans-serif;
-    padding: 10px 0; /* Espaçamento interno */
+    padding: 10px 20px; /* Espaçamento interno */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra */
     margin-bottom: 20px; /* Espaçamento inferior */
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between; /* Espaça os elementos do header */
+    align-items: center; /* Alinha os itens no centro verticalmente */
 }
 
 header .container {
     display: flex;
-    flex-direction: column; /* Organiza elementos em coluna */
-    align-items: flex-start; /* Alinha itens à esquerda */
-    padding-left: 20px;
+    justify-content: space-between; /* Espaça os elementos */
+    align-items: center; /* Alinha os itens no centro verticalmente */
+    width: 100%; /* Ocupa toda a largura do cabeçalho */
 }
 
 header .logo-and-info {
     display: flex;
     align-items: center;
-    margin-bottom: 15px; /* Espaçamento inferior para separar das tabs */
 }
 
 header .logoimg {
@@ -41,10 +44,9 @@ header .profile-info a:hover {
     color: #f0ad4e; /* Cor do link ao passar o mouse */
 }
 
-/* Estilo para as tabs no cabeçalho */
 header .nav-tabs {
     display: flex; /* Exibe as tabs em linha */
-    width: 100%; /* Ocupa toda a largura */
+    flex-grow: 1; /* Faz as tabs crescerem igualmente */
     justify-content: space-between; /* Espaçamento entre as tabs */
     margin-bottom: 0; /* Remove espaçamento inferior */
 }
@@ -59,7 +61,6 @@ header .nav-tabs .nav-tab {
     transition: all 0.3s ease; /* Transição suave */
     cursor: pointer; /* Cursor de mãozinha */
     text-align: center; /* Centraliza o texto */
-    flex-grow: 1; /* Faz as tabs crescerem igualmente */
     margin-right: 10px; /* Espaçamento entre as tabs */
 }
 
@@ -105,6 +106,7 @@ html, body {
     flex: 1; /* Faz com que o conteúdo ocupe o espaço disponível */
 }
 
+/* Estilos para o rodapé */
 footer {
     border-radius: 5px;
     font-family: 'Open Sans', sans-serif;
@@ -112,14 +114,12 @@ footer {
     color: #888;
     text-align: center; /* Centraliza texto no rodapé */
     background-color: #d4d4d4; /* Fundo branco para o rodapé */
-    padding: 10px 20px; /* Espaçamento interno com padding à esquerda */
+    padding: 10px 20px; /* Espaçamento interno com padding à esquerda e direita */
     border-top: 1px solid #ddd; /* Linha superior */
-}
-
-footer .container {
-    display: flex;
-    justify-content: center; /* Centraliza o conteúdo horizontalmente */
-    padding: 10px 20px; /* Espaçamento interno */
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: auto; /* Empurra o rodapé para o fim da página */
 }
 
 footer p {

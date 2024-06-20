@@ -23,7 +23,6 @@
             @yield('admin')
             <!-- End Content -->
 
-
         </div>
         <!-- Footer -->
         @include('admin.body.footer')

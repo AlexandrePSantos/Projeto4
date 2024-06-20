@@ -1,7 +1,7 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 
 <div class="page-content">
     <div class="row profile-body">
@@ -9,11 +9,11 @@
       <!-- middle wrapper start -->
       <div class="col-md-12 col-xl-12 middle-wrapper">
         <div class="row">
-            <div class="card">
+            <div class="card body-content">
                 <div class="card-body">
-                    <h6 class="card-title">Editar Informação</h6>
+                    <h2 class="card-title">Editar Informação</h2>
 
-                    <form method="POST" action="{{ route('admin.profile.store') }}" class="forms-sample" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.profile.store') }}" class="profile-form" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
                             <div class="col-md-6">
@@ -69,16 +69,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="formFile">Foto</label>
-                            <input class="form-control" name="foto" type="file" id="image">
-                        </div>
-                        <div class="mb-3">
-                            <img id="showImage" class="wd-80 rounded-circle"
-                                src="{{ (!empty($profileData->foto)) ? url('upload/admin_images/'.$profileData->foto) : url('upload/no_image.jpg') }}"
-                                alt="profile"
-                            >
-                        </div>
                         <!-- Password change form -->
                         <h6 class="card-title mt-4">Alterar Password</h6>
                         <div class="mb-3">
@@ -108,17 +98,5 @@
       <!-- middle wrapper end -->
     </div>
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#image').change(function(e){
-            var reader = new FileReader();
-            reader.onload = function(e){
-                $('#showImage').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(e.target.files['0']);
-        });
-    });
-</script>
 
 @endsection

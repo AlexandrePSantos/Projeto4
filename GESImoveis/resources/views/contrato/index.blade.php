@@ -1,61 +1,59 @@
 @extends('admin.admin_dashboard')
-{{-- @extends('proprietario.proprietario_dashboard') --> por criar --}}
 
 @section('admin')
+    <link rel="stylesheet" href="{{ asset('css/tables.css') }}">
 
-<a href="{{ route('contrato.create') }}">Novo contrato</a>
+    <div class="body-content">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Lista de Contratos</h2>
+                <a href="{{ route('contrato.create') }}" class="add-button">Novo Contrato</a>
 
-<style>
-    .table-bordered {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.table-bordered th, .table-bordered td {
-    border: 1px solid black;
-}
-</style>
-
-<table class="table-bordered">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Inquilino</th>
-            <th>Imovel</th>
-            <th>Tipo</th>
-            <th>Inicio</th>
-            <th>Fim</th>
-            <th>Valor total</th>
-            <th>Valor pago</th>
-            <th>Valor em falta</th>
-            <th>Perocidade pagamentos</th>
-            <th>Estado</th>
-            <th>Termino</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($contrato as $contrato)
-            <tr>
-                <td>{{ $contrato->id }}</td>
-                <td>{{ $contrato->id_inquilino }}</td>
-                <td><a href="{{ route('imoveis.show', $contrato->id_imovel) }}">{{ $contrato->id_imovel }}</a></td>
-                <td>{{ $contrato->id_tipo_contrato }}</td>
-                <td>{{ $contrato->data_ini }}</td>
-                <td>{{ $contrato->data_fim }}</td>
-                <td>{{ $contrato->valor }}</td>
-                <td>{{ $contrato->valor_pago }}</td>
-                <td>{{ $contrato->valor - $contrato->valor_pago }}</td>
-                <td><a href="{{ route('pagamento.index', ['contrato' => $contrato->id]) }}">{{ $contrato->perocidade_pag }}</a></td>
-                <td>{{ $contrato->estado }}</td>
-                <td>{{ $contrato->data_termino }}</td>
-                <td>
-                    <a href="{{ route('contrato.edit', $contrato->id) }}">Editar</a><br>
-                    <a href="{{ route('contrato.destroy', $contrato->id) }}">Terminar</a><br>
-                    <a href="{{ route('contrato.show', $contrato->id) }}">Detalhes</a><br>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-
+                <div class="table-container">
+                    <table class="table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Inquilino</th>
+                                <th>Imóvel</th>
+                                <th>Tipo</th>
+                                <th>Início</th>
+                                <th>Fim</th>
+                                <th>Valor total</th>
+                                <th>Valor pago</th>
+                                <th>Valor em falta</th>
+                                <th>Pagamentos</th>
+                                <th>Estado</th>
+                                <th>Término</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($contrato as $contrato)
+                                <tr>
+                                    <td>{{ $contrato->id }}</td>
+                                    <td>{{ $contrato->id_inquilino }}</td>
+                                    <td class="action-buttons"><a href="{{ route('imoveis.show', $contrato->id_imovel) }}">Ver</a></td>
+                                    <td>{{ $contrato->id_tipo_contrato }}</td>
+                                    <td>{{ $contrato->data_ini }}</td>
+                                    <td>{{ $contrato->data_fim }}</td>
+                                    <td>{{ $contrato->valor }}</td>
+                                    <td>{{ $contrato->valor_pago }}</td>
+                                    <td>{{ $contrato->valor - $contrato->valor_pago }}</td>
+                                    <td class="action-buttons"><a href="{{ route('pagamento.index', ['contrato' => $contrato->id]) }}">Ver</a></td>
+                                    <td>{{ $contrato->estado }}</td>
+                                    <td>{{ $contrato->data_termino }}</td>
+                                    <td class="action-buttons">
+                                        <a href="{{ route('contrato.edit', $contrato->id) }}">Editar</a>
+                                        <a href="{{ route('contrato.destroy', $contrato->id) }}">Terminar</a>
+                                        <a href="{{ route('contrato.show', $contrato->id) }}">Detalhes</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
