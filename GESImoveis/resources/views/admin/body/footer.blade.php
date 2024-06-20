@@ -1,46 +1,26 @@
-{{-- <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
-    <p class="text-muted mb-1 mb-md-0">Copyright © 2024 .</p>
-    <p class="text-muted">Handcrafted With <i class="mb-1 text-primary ms-1 icon-sm" data-feather="heart"></i></p>
-</footer> --}}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('uploads/favicon.png') }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex"/>
 
-{{-- <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
-	<div class="container">
-		<ul class="list-inline ">
-			<li>
-                <a href="https://www.ftkode.com" target="_blank">FTKode</a>
-			</li>
-		</ul>
-	</div>
-</footer> --}}
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <!-- End Stylesheets -->
+</head>
 
-<footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
-	<div class="container">
-		<ul class="list-inline">
-			<li class="list-inline-item">
-				© GESFaturação v1.0 | AT: Nº 2716
-			</li>
-			<li class="list-inline-item">
-				<a href="/definicoes/dados_acesso">Dados de Acesso</a>
-			</li>
-			<li class="list-inline-item">
-				<a href="/definicoes/formacao/"><i class="fa fa-youtube-play"></i> Formações</a>
-			</li>
-			<li class="list-inline-item logo">
-				<img src="{{ asset('img/ges-faturacao-white.png') }}" alt="GES Faturação">
-			</li>
-		</ul>
-	</div>
+<body>
+<!-- Footer -->
+<footer>
+    <div class="footer">
+        <p>
+            <b>GESImóveis desenvolvido por <a href="https://www.ftkode.com" class="options-link" target="_blank">FTKode Software</a>© {{ date("Y") }} | Todos os direitos reservados.</b>
+        </p>
+    </div>
 </footer>
-
-<footer class="special_pos_footer">
-	<div class="container">
-		<ul class="list-inline">
-			<li class="list-inline-item">
-				© GESFaturação v1.0
-			</li>
-			<li class="list-inline-item logo">
-				<img src="{{ asset('img/ges-faturacao-white.png') }}" alt="GES Faturação">
-			</li>
-		</ul>
-	</div>
-</footer>
+<!-- End Footer -->
+</body>
+</html>

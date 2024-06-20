@@ -1,0 +1,138 @@
+/* header.css */
+
+/* Estilos para o cabeçalho */
+header {
+    border-radius: 5px;
+    background-color: #d4d4d4; /* Fundo branco */
+    font-family: 'Open Sans', sans-serif;
+    padding: 10px 0; /* Espaçamento interno */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra */
+    margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+header .container {
+    display: flex;
+    flex-direction: column; /* Organiza elementos em coluna */
+    align-items: flex-start; /* Alinha itens à esquerda */
+    padding-left: 20px;
+}
+
+header .logo-and-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Espaçamento inferior para separar das tabs */
+}
+
+header .logoimg {
+    max-height: 60px; /* Altura máxima do logo */
+    margin-right: 15px; /* Espaçamento à direita do logo */
+}
+
+header .profile-info {
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+header .profile-info a {
+    color: #555; /* Cor do link */
+    text-decoration: none; /* Remove sublinhado */
+}
+
+header .profile-info a:hover {
+    color: #f0ad4e; /* Cor do link ao passar o mouse */
+}
+
+/* Estilo para as tabs no cabeçalho */
+header .nav-tabs {
+    display: flex; /* Exibe as tabs em linha */
+    width: 100%; /* Ocupa toda a largura */
+    justify-content: space-between; /* Espaçamento entre as tabs */
+    margin-bottom: 0; /* Remove espaçamento inferior */
+}
+
+header .nav-tabs .nav-tab {
+    background-color: #f0ad4e; /* Cor de fundo laranja */
+    border: 1px solid #eea236; /* Cor da borda */
+    color: #fff; /* Cor do texto */
+    border-radius: 5px; /* Cantos arredondados */
+    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: all 0.3s ease; /* Transição suave */
+    cursor: pointer; /* Cursor de mãozinha */
+    text-align: center; /* Centraliza o texto */
+    flex-grow: 1; /* Faz as tabs crescerem igualmente */
+    margin-right: 10px; /* Espaçamento entre as tabs */
+}
+
+header .nav-tabs .nav-tab:last-child {
+    margin-right: 0; /* Remove o último espaçamento à direita */
+}
+
+header .nav-tabs .nav-tab:hover,
+header .nav-tabs .nav-tab:focus {
+    background-color: #ec971f; /* Cor de fundo laranja mais escura ao passar o mouse */
+    border-color: #d58512; /* Cor da borda mais escura */
+}
+
+header .nav-tabs .nav-tab-red {
+    background-color: #d9534f; /* Cor de fundo vermelha */
+    border: 1px solid #d43f3a; /* Cor da borda vermelha */
+}
+
+header .nav-tabs .nav-tab-red:hover,
+header .nav-tabs .nav-tab-red:focus {
+    background-color: #c9302c; /* Cor de fundo vermelha mais escura ao passar o mouse */
+    border-color: #ac2925; /* Cor da borda vermelha mais escura */
+}
+
+/* Styles for the main wrapper and footer */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que a altura mínima seja a altura da janela */
+}
+
+.page-wrapper {
+    flex: 1; /* Faz com que o conteúdo ocupe o espaço disponível */
+}
+
+footer {
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: #888;
+    text-align: center; /* Centraliza texto no rodapé */
+    background-color: #d4d4d4; /* Fundo branco para o rodapé */
+    padding: 10px 20px; /* Espaçamento interno com padding à esquerda */
+    border-top: 1px solid #ddd; /* Linha superior */
+}
+
+footer .container {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    padding: 10px 20px; /* Espaçamento interno */
+}
+
+footer p {
+    margin: 0; /* Remove margens */
+    font-size: 14px; /* Tamanho da fonte */
+    color: #888; /* Cor do texto */
+}
+
+footer a.options-link {
+    color: #f0ad4e; /* Cor dos links */
+    text-decoration: none; /* Remove sublinhado */
+}
+
+footer a.options-link:hover {
+    color: #ec971f; /* Cor dos links ao passar o mouse */
+}
