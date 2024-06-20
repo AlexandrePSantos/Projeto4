@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "8d370ab9-95d1-4d9d-830a-31082b3eb3d6",
+		"name": "Dashboard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25544416",
+		"_collection_link": "https://gesfaturacao.postman.co/workspace/GESFatura%25C3%25A7%25C3%25A3o~806b66a0-56bc-4c2b-840c-e1a498ed6c52/collection/25546689-8d370ab9-95d1-4d9d-830a-31082b3eb3d6?action=share&source=collection_link&creator=25544416"
+	},
+	"item": [
+		{
+			"name": "Graphs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/dashboard/graphs?year=2023",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"dashboard",
+						"graphs"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2023"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resumos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/dashboard/global?year=2023",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"dashboard",
+						"global"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2023"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Documentos Vencidos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/dashboard/global",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"dashboard",
+						"global"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

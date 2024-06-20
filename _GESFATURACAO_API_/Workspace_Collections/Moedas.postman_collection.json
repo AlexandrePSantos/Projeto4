@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "20d2cca1-af37-4972-8dad-6958edfa2589",
+		"name": "Moedas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25544416",
+		"_collection_link": "https://gesfaturacao.postman.co/workspace/GESFatura%25C3%25A7%25C3%25A3o~806b66a0-56bc-4c2b-840c-e1a498ed6c52/collection/25546689-20d2cca1-af37-4972-8dad-6958edfa2589?action=share&source=collection_link&creator=25544416"
+	},
+	"item": [
+		{
+			"name": "All Moedas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/coins",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"coins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exchange Rate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/coins?iso=USD",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"coins"
+					],
+					"query": [
+						{
+							"key": "iso",
+							"value": "USD"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

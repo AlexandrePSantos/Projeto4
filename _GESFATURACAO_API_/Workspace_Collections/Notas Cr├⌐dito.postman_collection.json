@@ -1,0 +1,440 @@
+{
+	"info": {
+		"_postman_id": "4907834b-a3b1-43f2-86c1-955e69911a3e",
+		"name": "Notas Crédito",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25544416",
+		"_collection_link": "https://gesfaturacao.postman.co/workspace/GESFatura%25C3%25A7%25C3%25A3o~806b66a0-56bc-4c2b-840c-e1a498ed6c52/collection/25546689-4907834b-a3b1-43f2-86c1-955e69911a3e?action=share&source=collection_link&creator=25544416"
+	},
+	"item": [
+		{
+			"name": "All Notas Crédito",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/credit-notes",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"credit-notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Documents List By Type And ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/credit-notes?type=FT&document=10",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"credit-notes"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "FT"
+						},
+						{
+							"key": "document",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Notas Crédito Details By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/credit-notes?id=1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"credit-notes"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Nota Crédito",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "27",
+							"type": "text"
+						},
+						{
+							"key": "client",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "serie",
+							"value": "27",
+							"type": "text"
+						},
+						{
+							"key": "number",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "18/01/2023",
+							"type": "text"
+						},
+						{
+							"key": "expiration",
+							"value": "18/01/2023",
+							"type": "text"
+						},
+						{
+							"key": "reference",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "dueDate",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "coin",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "discount",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "observations",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "finalize",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "lines",
+							"value": "[{\"id\":\"12\",\"description\":\"ABATANADO\",\"quantity\":\"1\",\"price\":\"0.885\",\"discount\":\"0\",\"tax\":2,\"exemption\":\"\",\"retention\":0,\"cCenter\":0}]",
+							"type": "text"
+						},
+						{
+							"key": "payment",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "type_document",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "id_document",
+							"value": "9",
+							"type": "text"
+						},
+						{
+							"key": "type_document",
+							"value": "FT",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/credit-notes",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"credit-notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Nota Crédito",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "serie",
+							"value": "27",
+							"type": "text"
+						},
+						{
+							"key": "number",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "17/03/2023",
+							"type": "text"
+						},
+						{
+							"key": "expiration",
+							"value": "17/03/2023",
+							"type": "text"
+						},
+						{
+							"key": "reference",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "dueDate",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "coin",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "discount",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "observations",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "finalize",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "payment",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "lines",
+							"value": "[{\"id\":\"113\",\"description\":\"Tinteiro Compatível Epson T1631 Preto\",\"quantity\":\"1\",\"price\":\"1.22\",\"discount\":\"0\",\"tax\":1,\"exemption\":\"0\",\"retention\":0}]",
+							"type": "text"
+						},
+						{
+							"key": "id_document",
+							"value": "9",
+							"type": "text"
+						},
+						{
+							"key": "type_document",
+							"value": "FT",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/credit-notes",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"credit-notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Nota Crédito",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/credit-notes",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"credit-notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Notas Crédito Status",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "41",
+							"description": "int",
+							"type": "text"
+						},
+						{
+							"key": "reason",
+							"value": "",
+							"description": "string",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/credit-notes",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"credit-notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Finalize Notas Crédito",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "finalizeDocument",
+							"value": "88",
+							"description": "int; id documento",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/credit-notes",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"credit-notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel Nota Crédito",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "idDocument",
+							"value": "",
+							"description": "int",
+							"type": "text"
+						},
+						{
+							"key": "reason",
+							"value": "",
+							"description": "string, MAX: 150 chars",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/credit-notes",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"credit-notes"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

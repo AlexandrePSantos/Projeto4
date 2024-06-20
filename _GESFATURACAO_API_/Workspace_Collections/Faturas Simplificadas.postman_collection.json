@@ -1,0 +1,383 @@
+{
+	"info": {
+		"_postman_id": "d325f744-e5ba-474d-b3cf-cc546086daa8",
+		"name": "Faturas Simplificadas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25544416",
+		"_collection_link": "https://gesfaturacao.postman.co/workspace/GESFatura%25C3%25A7%25C3%25A3o~806b66a0-56bc-4c2b-840c-e1a498ed6c52/collection/25546689-d325f744-e5ba-474d-b3cf-cc546086daa8?action=share&source=collection_link&creator=25544416"
+	},
+	"item": [
+		{
+			"name": "All Faturas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/simplified-invoices",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"simplified-invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fatura Details By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/simplified-invoices?id=5",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"simplified-invoices"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Fatura",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client",
+							"value": "1",
+							"description": "int; ID",
+							"type": "text"
+						},
+						{
+							"key": "serie",
+							"value": "27",
+							"description": "int; ID",
+							"type": "text"
+						},
+						{
+							"key": "number",
+							"value": "0",
+							"description": "int; 0 por defeito",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "17/03/2023",
+							"description": "string; ex.: 01/12/2023",
+							"type": "text"
+						},
+						{
+							"key": "expiration",
+							"value": "17/03/2023",
+							"description": "string; ex.: 01/12/2023",
+							"type": "text"
+						},
+						{
+							"key": "reference",
+							"value": "",
+							"description": "string;",
+							"type": "text"
+						},
+						{
+							"key": "dueDate",
+							"value": "0",
+							"description": "int; Condições de pagamento",
+							"type": "text"
+						},
+						{
+							"key": "coin",
+							"value": "1",
+							"description": "int; ID",
+							"type": "text"
+						},
+						{
+							"key": "discount",
+							"value": "0",
+							"description": "int;",
+							"type": "text"
+						},
+						{
+							"key": "observations",
+							"value": "",
+							"description": "string;",
+							"type": "text"
+						},
+						{
+							"key": "finalize",
+							"value": "1",
+							"description": "boolean;",
+							"type": "text"
+						},
+						{
+							"key": "payment",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "lines",
+							"value": "[{\"id\":\"113\",\"description\":\"Tinteiro Compatível Epson T1631 Preto\",\"quantity\":\"1\",\"price\":\"1.22\",\"discount\":\"0\",\"tax\":1,\"exemption\":\"0\",\"retention\":0}]",
+							"description": "array de objetos;",
+							"type": "text"
+						},
+						{
+							"key": "doc_origin",
+							"value": "9",
+							"type": "text"
+						},
+						{
+							"key": "bank",
+							"value": "0",
+							"description": "int; Se Pagamento exigir banco, senão 0;",
+							"type": "text"
+						},
+						{
+							"key": "needsBank",
+							"value": "0",
+							"description": "int; Se Pagamento exigir banco, senão 0;",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/simplified-invoices",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"simplified-invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Fatura",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "27",
+							"type": "text"
+						},
+						{
+							"key": "client",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "serie",
+							"value": "27",
+							"type": "text"
+						},
+						{
+							"key": "number",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "18/01/2023",
+							"type": "text"
+						},
+						{
+							"key": "expiration",
+							"value": "18/01/2023",
+							"type": "text"
+						},
+						{
+							"key": "reference",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "dueDate",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "coin",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "discount",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "observations",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "finalize",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "lines",
+							"value": "[{\"id\":\"12\",\"description\":\"ABATANADO\",\"quantity\":\"1\",\"price\":\"0.885\",\"discount\":\"0\",\"tax\":2,\"exemption\":\"\",\"retention\":0,\"cCenter\":0}]",
+							"type": "text"
+						},
+						{
+							"key": "payment",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/simplified-invoices",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"simplified-invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Fatura",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "28",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/simplified-invoices",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"simplified-invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Finalize Fatura",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "finalizeDocument",
+							"value": "126",
+							"description": "int; id documento",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/simplified-invoices",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"simplified-invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel Fatura",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "idDocument",
+							"value": "",
+							"description": "int",
+							"type": "text"
+						},
+						{
+							"key": "reason",
+							"value": "",
+							"description": "string, MAX: 150 chars",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{API_URL}}/simplified-invoices",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"simplified-invoices"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

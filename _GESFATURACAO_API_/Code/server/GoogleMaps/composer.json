@@ -1,0 +1,10 @@
+{
+        "name": "ftkode/ivory-google-map-lib",
+        "version": "1.0.0",
+        "require": {
+            "egeloen/google-map": "*",
+            "php-http/guzzle6-adapter": "*",
+            "php-http/message": "*",
+            "egeloen/serializer": "*"
+        }
+    }

@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "17537c6b-0860-4de4-865b-9ad5ac7c6f80",
+		"name": "Mesas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25544416",
+		"_collection_link": "https://gesfaturacao.postman.co/workspace/GESFatura%25C3%25A7%25C3%25A3o~806b66a0-56bc-4c2b-840c-e1a498ed6c52/collection/25546689-17537c6b-0860-4de4-865b-9ad5ac7c6f80?action=share&source=collection_link&creator=25544416"
+	},
+	"item": [
+		{
+			"name": "All Mesas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/tables",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"tables"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mesas By Sala",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/tables?room=1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"tables"
+					],
+					"query": [
+						{
+							"key": "room",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
