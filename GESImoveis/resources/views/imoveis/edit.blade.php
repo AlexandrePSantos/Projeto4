@@ -1,5 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+<link rel="stylesheet" href="{{ asset('css/forms.css') }}">
 
 <form action="{{ route('imoveis.update', ['imovel' => $imovel->id]) }}" method="POST">
     @csrf
