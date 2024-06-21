@@ -142,6 +142,7 @@ Route::middleware(['auth', 'role:admin,proprietario'])->group(function () {
     Route::post('/pagamento', [PagamentoController::class, 'store'])->name('pagamento.store');
     Route::get('/pagamento/{pagamento}', [PagamentoController::class, 'show'])->name('pagamento.show');
     Route::post('/pagamento/{id}/emitir-fatura', [PagamentoController::class, 'emitirFatura'])->name('pagamento.emitirFatura');
+
     // Foto
     Route::resource('foto', FotoController::class);
 });

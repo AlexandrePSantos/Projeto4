@@ -1,25 +1,70 @@
 @extends('admin.admin_dashboard')
 
 @section('admin')
-    <h2>Detalhes do Imóvel</h2>
+<link rel="stylesheet" href="{{ asset('css/tables.css') }}">
 
-    <p><strong>Tipo de Imóvel:</strong> {{ $imovel->id_tipo_imovel }}</p>
-    <p><strong>Área:</strong> {{ $imovel->area }}</p>
-    <p><strong>Morada:</strong> {{ $imovel->morada }}</p>
-    <p><strong>Andar:</strong> {{ $imovel->andar }}</p>
-    <p><strong>Número de Divisões:</strong> {{ $imovel->num_divisoes }}</p>
-    <p><strong>Ano de Construção:</strong> {{ $imovel->ano_construcao }}</p>
-    <p><strong>Valor do Seguro:</strong> {{ $imovel->val_seguro }}</p>
-    <p><strong>Valor do IMI:</strong> {{ $imovel->val_imi }}</p>
-    <p><strong>Valor do Condomínio:</strong> {{ $imovel->val_condominio }}</p>
-    <p><strong>Data de Aquisição:</strong> {{ $imovel->data_aquisicao }}</p>
-    <p><strong>Preço de Compra:</strong> {{ $imovel->preco_compra }}</p>
+<div class="body-content">
+    <div class="card">
+        <div class="card-title">Detalhes do Imóvel</div>
 
-    <a href="{{ route('imoveis.edit', $imovel->id) }}" class="btn btn-primary">Editar Imóvel</a>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>Tipo de Imóvel</th>
+                    <td>{{ $imovel->id_tipo_imovel }}</td>
+                </tr>
+                <tr>
+                    <th>Área</th>
+                    <td>{{ $imovel->area }}</td>
+                </tr>
+                <tr>
+                    <th>Morada</th>
+                    <td>{{ $imovel->morada }}</td>
+                </tr>
+                <tr>
+                    <th>Andar</th>
+                    <td>{{ $imovel->andar }}</td>
+                </tr>
+                <tr>
+                    <th>Número de Divisões</th>
+                    <td>{{ $imovel->num_divisoes }}</td>
+                </tr>
+                <tr>
+                    <th>Ano de Construção</th>
+                    <td>{{ $imovel->ano_construcao }}</td>
+                </tr>
+                <tr>
+                    <th>Valor do Seguro</th>
+                    <td>{{ $imovel->val_seguro }}</td>
+                </tr>
+                <tr>
+                    <th>Valor do IMI</th>
+                    <td>{{ $imovel->val_imi }}</td>
+                </tr>
+                <tr>
+                    <th>Valor do Condomínio</th>
+                    <td>{{ $imovel->val_condominio }}</td>
+                </tr>
+                <tr>
+                    <th>Data de Aquisição</th>
+                    <td>{{ $imovel->data_aquisicao }}</td>
+                </tr>
+                <tr>
+                    <th>Preço de Compra</th>
+                    <td>{{ $imovel->preco_compra }}</td>
+                </tr>
+            </table>
 
-    <form action="{{ route('imoveis.destroy', $imovel->id) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <input type="submit" value="Remover Imóvel" class="btn btn-danger">
-    </form>
+            <div class="action-buttons">
+                <a href="{{ route('imoveis.edit', $imovel->id) }}" class="btn btn-primary btn-outside-table">Editar Imóvel</a>
+
+                <form action="{{ route('imoveis.destroy', $imovel->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-outside-table">Remover Imóvel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

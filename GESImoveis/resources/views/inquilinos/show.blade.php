@@ -1,22 +1,56 @@
 @extends('admin.admin_dashboard')
-{{-- @extends('proprietario.proprietario_dashboard') --> por criar --}}
 
 @section('admin')
-    <h2>Detalhes do Inquilino</h2>
+<link rel="stylesheet" href="{{ asset('css/show.css') }}">
 
-    <p><strong>Nome:</strong> {{ $inquilino->nome }}</p>
-    <p><strong>Apelido:</strong> {{ $inquilino->apelido }}</p>
-    <p><strong>Email:</strong> {{ $inquilino->email }}</p>
-    <p><strong>Telemovél:</strong> {{ $inquilino->telemovel }}</p>
-    <p><strong>Telefone:</strong> {{ $inquilino->telefone }}</p>
-    <p><strong>Morada:</strong> {{ $inquilino->morada }}</p>
-    <p><strong>Código Postal:</strong> {{ $inquilino->codigo_postal }}</p>
-    <p><strong>NIF:</strong> {{ $inquilino->nif }}</p>
+<div class="card">
+    <div class="card-title">Detalhes do Inquilino</div>
 
-    <a href="{{ route('inquilinos.edit', $inquilino->id) }}">Editar</a>
-    <form action="{{ route('inquilinos.destroy', $inquilino->id) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <input type="submit" value="Remover">
-    </form>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Nome</th>
+                <td>{{ $inquilino->nome }}</td>
+            </tr>
+            <tr>
+                <th>Apelido</th>
+                <td>{{ $inquilino->apelido }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ $inquilino->email }}</td>
+            </tr>
+            <tr>
+                <th>Telemóvel</th>
+                <td>{{ $inquilino->telemovel }}</td>
+            </tr>
+            <tr>
+                <th>Telefone</th>
+                <td>{{ $inquilino->telefone }}</td>
+            </tr>
+            <tr>
+                <th>Morada</th>
+                <td>{{ $inquilino->morada }}</td>
+            </tr>
+            <tr>
+                <th>Código Postal</th>
+                <td>{{ $inquilino->codigo_postal }}</td>
+            </tr>
+            <tr>
+                <th>NIF</th>
+                <td>{{ $inquilino->nif }}</td>
+            </tr>
+        </table>
+
+        <div class="action-buttons">
+            <a href="{{ route('inquilinos.edit', $inquilino->id) }}" class="btn btn-primary btn-outside-table">Editar</a>
+
+            <form action="{{ route('inquilinos.destroy', $inquilino->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-outside-table">Remover</button>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection

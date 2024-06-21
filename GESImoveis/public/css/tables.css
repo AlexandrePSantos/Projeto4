@@ -150,3 +150,8 @@
     border-radius: 5px; /* Cantos arredondados nos campos de texto */
     height: 45px; /* Altura dos campos de texto */
 }
+
+/* Estilos para botões fora da tabela */
+.btn-outside-table {
+    margin-top: 10px; /* Ajuste o valor conforme necessário */
+}

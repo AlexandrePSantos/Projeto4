@@ -84,11 +84,13 @@ class ImovelController extends Controller
      */
     public function edit(Imovel $imovel)
     {
+        $tiposImovel = TipoImovel::all();
+
         if (Auth::user()->role == 'proprietario' && $imovel->id_user != Auth::id()) {
             return redirect()->route('imoveis.index');
         }
 
-        return view('imoveis.edit', compact('imovel'));
+        return view('imoveis.edit', compact('imovel', 'tiposImovel'));
     }
 
     /**
@@ -96,6 +98,8 @@ class ImovelController extends Controller
      */
     public function update(Request $request, Imovel $imovel)
     {
+        $tiposImovel = TipoImovel::all();
+
         $validator = Validator::make($request->all(), [
             'endereco' => 'required|unique:imovel,endereco,' . $imovel->id,
             'tipo_imovel_id' => 'required|exists:tipo_imovel,id',

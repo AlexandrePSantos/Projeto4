@@ -1,26 +1,73 @@
 @extends('admin.admin_dashboard')
 
 @section('admin')
-    <h2>Detalhes do Contrato</h2>
+<link rel="stylesheet" href="{{ asset('css/tables.css') }}">
+<div class="body-content">
+<div class="card">
+    <div class="card-title">Detalhes do Contrato</div>
 
-    <p><strong>ID:</strong> {{ $contrato->id }}</p>
-    <p><strong>Inquilino:</strong> {{ $contrato->id_inquilino }}</p>
-    <p><strong>Imovel:</strong> <a href="{{ route('imoveis.show', $contrato->id_imovel) }}">{{ $contrato->id_imovel }}</a></p>
-    <p><strong>Tipo:</strong> {{ $contrato->id_tipo_contrato }}</p>
-    <p><strong>Inicio:</strong> {{ $contrato->data_ini }}</p>
-    <p><strong>Fim:</strong> {{ $contrato->data_fim }}</p>
-    <p><strong>Valor total:</strong> {{ $contrato->valor }}</p>
-    <p><strong>Valor pago:</strong> {{ $contrato->valor_pago }}</p>
-    <p><strong>Valor em falta:</strong> {{ $contrato->valor - $contrato->valor_pago }}</p>
-    <p><strong>Perocidade pagamentos:</strong> <a href="{{ route('pagamento.index', ['contrato' => $contrato->id]) }}">{{ $contrato->perocidade_pag }}</a></p>
-    <p><strong>Estado:</strong> {{ $contrato->estado }}</p>
-    <p><strong>Termino:</strong> {{ $contrato->data_termino }}</p>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>ID</th>
+                <td>{{ $contrato->id }}</td>
+            </tr>
+            <tr>
+                <th>Inquilino</th>
+                <td>{{ $contrato->id_inquilino }}</td>
+            </tr>
+            <tr>
+                <th>Imovel</th>
+                <td><a href="{{ route('imoveis.show', $contrato->id_imovel) }}">{{ $contrato->id_imovel }}</a></td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ $contrato->id_tipo_contrato }}</td>
+            </tr>
+            <tr>
+                <th>Inicio</th>
+                <td>{{ $contrato->data_ini }}</td>
+            </tr>
+            <tr>
+                <th>Fim</th>
+                <td>{{ $contrato->data_fim }}</td>
+            </tr>
+            <tr>
+                <th>Valor total</th>
+                <td>{{ $contrato->valor }}</td>
+            </tr>
+            <tr>
+                <th>Valor pago</th>
+                <td>{{ $contrato->valor_pago }}</td>
+            </tr>
+            <tr>
+                <th>Valor em falta</th>
+                <td>{{ $contrato->valor - $contrato->valor_pago }}</td>
+            </tr>
+            <tr>
+                <th>Pagamentos</th>
+                <td><a href="{{ route('pagamento.index', ['contrato' => $contrato->id]) }}">Ver</a></td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ $contrato->estado }}</td>
+            </tr>
+            <tr>
+                <th>Término</th>
+                <td>{{ $contrato->data_termino }}</td>
+            </tr>
+        </table>
 
-    <a href="{{ route('contrato.edit', $contrato->id) }}" class="btn btn-primary">Editar Contrato</a>
+        <div class="action-buttons">
+            <a href="{{ route('contrato.edit', $contrato->id) }}" class="btn btn-primary btn-outside-table">Editar Contrato</a>
 
-    <form action="{{ route('contrato.destroy', $contrato->id) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <input type="submit" value="Terminar Contrato" class="btn btn-danger">
-    </form>
+            <form action="{{ route('contrato.destroy', $contrato->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-outside-table">Terminar Contrato</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
 @endsection

@@ -1,5 +1,8 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+<link rel="stylesheet" href="{{ asset('css/forms.css') }}">
+
+<div class="form-container">
     <h2>Editar Pagamento</h2>
 
     <form action="{{ route('pagamento.update', $pagamento->id) }}" method="POST">
@@ -26,6 +29,7 @@
             <input type="number" step="0.01" id="valor" name="valor" value="{{ $pagamento->valor }}" required>
         </div>
 
-        <button type="submit">Atualizar Pagamento</button>
+        <button type="submit" class="btn btn-primary">Atualizar Pagamento</button>
     </form>
+</div>
 @endsection
