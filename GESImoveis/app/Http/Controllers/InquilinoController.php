@@ -45,21 +45,37 @@ class InquilinoController extends Controller
      */
     public function store(Request $request)
     {
+        // Validação dos dados recebidos do formulário
         $validator = Validator::make($request->all(), [
             'email' => 'required|unique:inquilino',
             'NIF' => 'nullable|unique:inquilino',
         ]);
 
+        // Se houver erros de validação, retorna para a página de criação com os erros
         if ($validator->fails()) {
             return redirect('inquilinos/create')
                         ->withErrors($validator)
                         ->withInput();
         }
 
-        // The Inquilino is valid, store it in the database...
-        $inquilino = Inquilino::create($request->all());
-        return redirect()->route('inquilinos.index');
+        try {
+            // Adiciona o id_user atual ao request
+            $data = $request->all();
+            $data['id_user'] = auth()->id(); // Obtém o id do utilizador autenticado
+
+            // Cria o inquilino no banco de dados
+            $inquilino = Inquilino::create($data);
+
+            return redirect()->route('inquilinos.index')
+                             ->with('success', 'Inquilino adicionado com sucesso!');
+        } catch (\Exception $e) {
+            // Em caso de erro, retorna para a página de criação com mensagem de erro
+            return redirect('inquilinos/create')
+                        ->with('error', 'Ocorreu um erro ao adicionar o inquilino: ' . $e->getMessage())
+                        ->withInput();
+        }
     }
+
 
     /**
      * Display the specified resource.

@@ -32,9 +32,9 @@
                             @foreach ($contrato as $contrato)
                                 <tr>
                                     <td>{{ $contrato->id }}</td>
-                                    <td>{{ $contrato->id_inquilino }}</td>
-                                    <td class="action-buttons"><a href="{{ route('imoveis.show', $contrato->id_imovel) }}">Ver</a></td>
-                                    <td>{{ $contrato->id_tipo_contrato }}</td>
+                                    <td>{{ $contrato->inquilino->nome }} {{ $contrato->inquilino->apelido }}</td>
+                                    <td class="action-buttons"><a href="{{ route('imoveis.show', $contrato->imovel->id) }}">Ver</a></td>
+                                    <td>{{ $contrato->tipoContrato->tipo }}</td>
                                     <td>{{ $contrato->data_ini }}</td>
                                     <td>{{ $contrato->data_fim }}</td>
                                     <td>{{ $contrato->valor }}</td>
@@ -44,8 +44,9 @@
                                     <td>{{ $contrato->estado }}</td>
                                     <td>{{ $contrato->data_termino }}</td>
                                     <td class="action-buttons">
-                                        <a href="{{ route('contrato.edit', $contrato->id) }}">Editar</a>
-                                        <a href="{{ route('contrato.destroy', $contrato->id) }}">Terminar</a>
+                                        @if($contrato->estado == 'active')
+                                            <a href="{{ route('contrato.edit', $contrato->id) }}">Editar</a>
+                                        @endif
                                         <a href="{{ route('contrato.show', $contrato->id) }}">Detalhes</a>
                                     </td>
                                 </tr>

@@ -56,13 +56,15 @@
             </table>
 
             <div class="action-buttons">
-                <a href="{{ route('utilizadores.edit', $utilizador->id) }}" class="btn btn-primary btn-outside-table">Editar Utilizador</a>
+                @if($utilizador->estado == 'ativo')
+                    <a href="{{ route('utilizadores.edit', $utilizador->id) }}" class="btn btn-primary btn-outside-table">Editar Utilizador</a>
 
-                <form action="{{ route('utilizadores.destroy', $utilizador->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-outside-table">Desativar Utilizador</button>
-                </form>
+                    <form action="{{ route('utilizadores.destroy', $utilizador->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-outside-table">Desativar Utilizador</button>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

@@ -10,8 +10,9 @@
         <div>
             <label for="id_tipo_imovel">Tipo de Imóvel</label>
             <select id="id_tipo_imovel" name="id_tipo_imovel" required>
+                <option value="" disabled selected>Escolha um tipo de imóvel</option>
                 @foreach ($tiposImovel as $tipo)
-                    <option value="{{ $tipo->id }}" {{ $imovel->id_tipo_imovel == $tipo->id ? 'selected' : '' }}>{{ $tipo->tipo }}</option>
+                    <option value="{{ $tipo->id }}">{{ $tipo->tipo }}</option>
                 @endforeach
             </select>
         </div>

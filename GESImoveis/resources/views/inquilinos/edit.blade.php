@@ -1,11 +1,9 @@
 @extends('admin.admin_dashboard')
-
 @section('admin')
 <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
 
 <div class="form-container">
     <h2>Editar Inquilino</h2>
-
     <form action="{{ route('inquilinos.update', $inquilino->id) }}" method="POST">
         @csrf
         @method('PUT')

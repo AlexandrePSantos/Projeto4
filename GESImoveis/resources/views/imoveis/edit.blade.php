@@ -4,16 +4,16 @@
 
 <div class="form-container">
     <h2>Editar Imóvel</h2>
-    <form action="{{ route('imoveis.update', ['imovel' => $imovel->id]) }}" method="POST">
+    <form action="{{ route('imoveis.update', $imovel->id) }}" method="POST">
         @csrf
         @method('PUT')
 
         <div>
             <label for="id_tipo_imovel">Tipo de Imóvel</label>
             <select id="id_tipo_imovel" name="id_tipo_imovel" required>
-                <option value="" disabled selected>Escolha um tipo de imóvel</option>
+                <option value="" disabled>Escolha um tipo de imóvel</option>
                 @foreach ($tiposImovel as $tipo)
-                    <option value="{{ $tipo->tipo }}">{{ $tipo->tipo }}</option>
+                    <option value="{{ $tipo->id }}" @if($tipo->id == $imovel->id_tipo_imovel) selected @endif>{{ $tipo->tipo }}</option>
                 @endforeach
             </select>
         </div>
@@ -72,7 +72,15 @@
             <input type="number" step="0.01" id="preco_compra" name="preco_compra" value="{{ $imovel->preco_compra }}" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Atualizar Imóvel</button>
+        <input type="submit" class="btn btn-primary" value="Atualizar Imóvel">
     </form>
 </div>
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Log do tipo de imóvel selecionado ao carregar a página
+            console.log('Tipo de Imóvel Selecionado: {{ $imovel->tipo_imovel_id }}');
+        });
+    </script>
+@endpush
 @endsection

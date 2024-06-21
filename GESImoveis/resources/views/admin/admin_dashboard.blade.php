@@ -28,5 +28,33 @@
         @include('admin.body.footer')
         <!-- End Footer -->
     </div>
+    <!-- Exibir alertas -->
+    @if(session('success'))
+    <div class="alert success show">
+        {{ session('success') }}
+        <a href="#" class="alert-close">&times;</a>
+    </div>
+    @endif
+
+    @if(session('error'))
+    <div class="alert error show">
+        {{ session('error') }}
+        <a href="#" class="alert-close">&times;</a>
+    </div>
+    @endif
+
+    @if(session('warning'))
+    <div class="alert warning show">
+        {{ session('warning') }}
+        <a href="#" class="alert-close">&times;</a>
+    </div>
+    @endif
+
+    @if(session('info'))
+    <div class="alert info show">
+        {{ session('info') }}
+        <a href="#" class="alert-close">&times;</a>
+    </div>
+    @endif
 </body>
 </html>

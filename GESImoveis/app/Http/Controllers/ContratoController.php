@@ -12,6 +12,8 @@ use App\Models\TipoDespesa;
 use App\Models\TipoImovel;
 use App\Models\User;
 
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,9 +28,12 @@ class ContratoController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'proprietario') {
-            $contrato = Contrato::where('id_user', Auth::id())->get();
+            $contrato = Contrato::with('tipoContrato')
+                                ->where('id_user', Auth::id())
+                                ->get();
         } else {
-            $contrato = Contrato::all();
+            $contrato = Contrato::with('tipoContrato')
+                                ->get();
         }
 
         return view('contrato.index', compact('contrato'));
@@ -39,7 +44,16 @@ class ContratoController extends Controller
      */
     public function create()
     {
-        return view('contrato.create');
+        try {
+            $inquilinos = Inquilino::all(); // Obtém todos os inquilinos
+            $imoveis = Imovel::where('estado', 'ativo')->get(); // Obter imóveis ativos
+            $tiposContrato = TipoContrato::all(); // Obtém todos os tipos de contrato
+
+            return view('contrato.create', compact('inquilinos', 'imoveis', 'tiposContrato'));
+        } catch (\Exception $e) {
+            Log::error('Erro ao carregar formulário de criação de contrato: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Erro ao carregar formulário de criação de contrato.']);
+        }
     }
 
     /**
@@ -47,48 +61,66 @@ class ContratoController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'inquilino_id' => [
-                'required',
-                'exists:inquilino,id',
-                function ($attribute, $value, $fail) {
-                    $activeContrato = Contrato::where('inquilino_id', $value)->first();
-                    if ($activeContrato) {
-                        $fail($attribute.' already has a contract.');
-                    }
-                },
-            ],
-            'imovel_id' => [
-                'required',
-                'exists:imovel,id',
-                function ($attribute, $value, $fail) {
-                    $activeContrato = Contrato::where('imovel_id', $value)->where('data_fim', '>=', now())->orWhereNull('data_fim')->first();
-                    if ($activeContrato) {
-                        $fail($attribute.' already has an active contract.');
-                    }
-                },
-            ],
-            'tipo_contrato_id' => 'required|exists:tipo_contrato,id',
-            'user_id' => 'required|exists:user,id',
-            'valor' => 'required|gt:0',
-            'data_ini' => 'required|date',
-            'data_fim' => 'required|date|after_or_equal:data_ini',
-            'estado' => ['required', Rule::in(['ativo', 'inativo', 'cancelado'])],
-            'valor_pago' => [
-                'required',
-                'lte:valor',
-            ],
-        ]);
+        try {
+            $validator = Validator::make($request->all(), [
+                'inquilino_id' => [
+                    'required',
+                    'exists:inquilino,id',
+                    function ($attribute, $value, $fail) {
+                        $activeContrato = Contrato::where('inquilino_id', $value)->first();
+                        if ($activeContrato) {
+                            $fail($attribute.' already has a contract.');
+                        }
+                    },
+                ],
+                'imovel_id' => [
+                    'required',
+                    'exists:imovel,id',
+                    function ($attribute, $value, $fail) {
+                        $activeContrato = Contrato::where('imovel_id', $value)
+                            ->where(function ($query) {
+                                $query->where('data_fim', '>=', now())
+                                      ->orWhereNull('data_fim');
+                            })
+                            ->first();
+                        if ($activeContrato) {
+                            $fail($attribute.' already has an active contract.');
+                        }
+                    },
+                ],
+                'tipo_contrato_id' => 'required|exists:tipo_contrato,id',
+                'user_id' => 'required|exists:user,id',
+                'valor' => 'required|gt:0',
+                'data_ini' => 'required|date',
+                'data_fim' => 'required|date|after_or_equal:data_ini',
+                'estado' => 'ativo',
+                'valor_pago' => [
+                    'required',
+                    'lte:valor',
+                ],
+            ]);
 
-        if ($validator->fails()) {
+            if ($validator->fails()) {
+                return redirect('contrato/create')
+                            ->withErrors($validator)
+                            ->withInput();
+            }
+
+            // The Contrato is valid, store it in the database...
+            $contrato = Contrato::create($request->all());
+
+            // Log de sucesso na criação do contrato
+            Log::info('Contrato criado com sucesso: ' . $contrato->id);
+
+            return redirect()->route('contrato.index');
+        } catch (\Exception $e) {
+            // Log de erro na criação do contrato
+            Log::error('Erro ao criar contrato: ' . $e->getMessage());
+
             return redirect('contrato/create')
-                        ->withErrors($validator)
+                        ->withErrors(['error' => 'Erro ao criar contrato. Tente novamente mais tarde.'])
                         ->withInput();
         }
-
-        // The Contrato is valid, store it in the database...
-        $contrato = Contrato::create($request->all());
-        return redirect()->route('contrato.index');
     }
 
     /**
@@ -177,7 +209,10 @@ class ContratoController extends Controller
             return redirect()->route('contrato.index');
         }
 
-        $contrato->delete();
+        $contrato->data_termino = Carbon::now();
+        $contrato->estado = 'inativo';
+        $contrato->save();
+
         return redirect()->route('contrato.index');
     }
 }

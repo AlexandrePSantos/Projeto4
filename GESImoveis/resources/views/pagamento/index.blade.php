@@ -32,7 +32,6 @@
                                     <td class="action-buttons">
                                         <a href="{{ route('pagamento.edit', $pagamento->id) }}" class="action-button">Editar</a>
                                         <a href="{{ route('pagamento.show', $pagamento->id) }}" class="action-button">Detalhes</a>
-                                        <a href="{{ route('pagamento.destroy', $pagamento->id) }}" class="action-button">Excluir</a>
                                     </td>
                                 </tr>
                             @endforeach

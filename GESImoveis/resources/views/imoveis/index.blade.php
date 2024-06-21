@@ -18,6 +18,7 @@
                                 <th>Tipo de Imóvel</th>
                                 <th>Área</th>
                                 <th>Morada</th>
+                                <th>Estado</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -25,12 +26,20 @@
                             @foreach ($imoveis as $imovel)
                                 <tr>
                                     <td>{{ $imovel->id }}</td>
-                                    <td>{{ $imovel->id_tipo_imovel }}</td>
+                                    <td>
+                                        @foreach ($tiposImovel as $tipo)
+                                            @if ($tipo->id == $imovel->id_tipo_imovel)
+                                                {{ $tipo->tipo }}
+                                            @endif
+                                        @endforeach
+                                    </td>
                                     <td>{{ $imovel->area }}</td>
                                     <td>{{ $imovel->morada }}</td>
+                                    <td>{{ $imovel->estado }}</td>
                                     <td class="action-buttons">
-                                        <a href="{{ route('imoveis.edit', $imovel->id) }}" class="action-button">Editar</a>
-                                        <a href="{{ route('imoveis.destroy', $imovel->id) }}" class="action-button">Inativar</a>
+                                        @if ($imovel->estado == 'ativo')
+                                            <a href="{{ route('imoveis.edit', $imovel->id) }}" class="action-button">Editar</a>
+                                        @endif
                                         <a href="{{ route('imoveis.show', $imovel->id) }}" class="action-button">Detalhes</a>
                                     </td>
                                 </tr>

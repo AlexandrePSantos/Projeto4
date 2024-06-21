@@ -59,6 +59,7 @@
         </table>
 
         <div class="action-buttons">
+            @if($contrato->estado == 'active')
             <a href="{{ route('contrato.edit', $contrato->id) }}" class="btn btn-primary btn-outside-table">Editar Contrato</a>
 
             <form action="{{ route('contrato.destroy', $contrato->id) }}" method="POST">
@@ -66,6 +67,7 @@
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger btn-outside-table">Terminar Contrato</button>
             </form>
+            @endif
         </div>
     </div>
 </div>

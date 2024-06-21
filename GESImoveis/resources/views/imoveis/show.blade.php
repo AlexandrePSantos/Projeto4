@@ -56,13 +56,14 @@
             </table>
 
             <div class="action-buttons">
-                <a href="{{ route('imoveis.edit', $imovel->id) }}" class="btn btn-primary btn-outside-table">Editar Imóvel</a>
-
-                <form action="{{ route('imoveis.destroy', $imovel->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-outside-table">Remover Imóvel</button>
-                </form>
+                @if ($imovel->estado == 'ativo')
+                    <a href="{{ route('imoveis.edit', $imovel->id) }}" class="btn btn-primary ">Editar</a>
+                    <form action="{{ route('imoveis.destroy', $imovel->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-outside-table">Inativar</button>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

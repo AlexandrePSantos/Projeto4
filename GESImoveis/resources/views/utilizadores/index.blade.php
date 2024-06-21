@@ -47,13 +47,13 @@
                                         <td>{{ $user->estado }}</td>
                                         <td class="action-buttons">
                                             @if($user->estado == 'ativo')
+                                                <a href="{{ route('utilizadores.edit', $user->id) }}" class="action-button">Editar</a>
                                                 <form action="{{ route('utilizadores.destroy', $user->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger mb-1">Inativar</button>
                                                 </form>
                                             @endif
-                                            <a href="{{ route('utilizadores.edit', $user->id) }}" class="action-button">Editar</a>
                                             <a href="{{ route('utilizadores.show', $user->id) }}" class="action-button">Detalhes</a>
                                         </td>
                                     </tr>
