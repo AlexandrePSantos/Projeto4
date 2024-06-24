@@ -29,7 +29,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($contrato as $contrato)
+                            @foreach ($contratos as $contrato)
                                 <tr>
                                     <td>{{ $contrato->id }}</td>
                                     <td>{{ $contrato->inquilino->nome }} {{ $contrato->inquilino->apelido }}</td>
@@ -39,12 +39,12 @@
                                     <td>{{ $contrato->data_fim }}</td>
                                     <td>{{ $contrato->valor }}</td>
                                     <td>{{ $contrato->valor_pago }}</td>
-                                    <td>{{ $contrato->valor - $contrato->valor_pago }}</td>
+                                    <td>{{ $contrato->valor_em_falta }}</td>
                                     <td class="action-buttons"><a href="{{ route('pagamento.index', ['contrato' => $contrato->id]) }}">Ver</a></td>
                                     <td>{{ $contrato->estado }}</td>
                                     <td>{{ $contrato->data_termino }}</td>
                                     <td class="action-buttons">
-                                        @if($contrato->estado == 'active')
+                                        @if($contrato->estado == 'ativo')
                                             <a href="{{ route('contrato.edit', $contrato->id) }}">Editar</a>
                                         @endif
                                         <a href="{{ route('contrato.show', $contrato->id) }}">Detalhes</a>

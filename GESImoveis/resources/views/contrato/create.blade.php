@@ -54,6 +54,11 @@
                 <input type="number" id="valor" name="valor" class="form-control">
             </div>
 
+            <input type="hidden" id="valor_pago" name="valor_pago" value="0">
+            <input type="hidden" id="estado" name="estado" value="ativo">
+            <input type="hidden" id="perocidade_pag" name="perocidade_pag" value="mensal">
+            <input type="hidden" id="id_user" name="id_user" value="{{ Auth::id() }}">
+
             <input type="submit" value="Criar" class="btn btn-primary">
         </form>
     </div>

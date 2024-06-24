@@ -10,32 +10,61 @@
             @csrf
             @method('PUT')
 
-            <label for="id_inquilino">Inquilino:</label>
-            <input type="text" id="id_inquilino" name="id_inquilino" value="{{ $contrato->id_inquilino }}" class="form-control">
+            <div>
+                <label for="id_inquilino">Inquilino:</label>
+                <select id="id_inquilino" name="id_inquilino" class="form-control">
+                    <option value="">Escolha uma opção</option>
+                    @foreach ($inquilinos as $inquilino)
+                        <option value="{{ $inquilino->id }}" {{ $contrato->id_inquilino == $inquilino->id ? 'selected' : '' }}>
+                            {{ $inquilino->id }} - {{ $inquilino->nome }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
-            <label for="id_imovel">Imóvel:</label>
-            <input type="text" id="id_imovel" name="id_imovel" value="{{ $contrato->id_imovel }}" class="form-control">
+            <div>
+                <label for="id_imovel">Imóvel:</label>
+                <select id="id_imovel" name="id_imovel" class="form-control">
+                    <option value="">Escolha uma opção</option>
+                    @foreach ($imoveis as $imovel)
+                        <option value="{{ $imovel->id }}" {{ $contrato->id_imovel == $imovel->id ? 'selected' : '' }}>
+                            {{ $imovel->id }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
-            <label for="id_tipo_contrato">Tipo:</label>
-            <input type="text" id="id_tipo_contrato" name="id_tipo_contrato" value="{{ $contrato->id_tipo_contrato }}" class="form-control">
+            <div>
+                <label for="id_tipo_contrato">Tipo:</label>
+                <select id="id_tipo_contrato" name="id_tipo_contrato" class="form-control">
+                    <option value="">Escolha uma opção</option>
+                    @foreach ($tiposContrato as $tipoContrato)
+                        <option value="{{ $tipoContrato->id }}" {{ $contrato->id_tipo_contrato == $tipoContrato->id ? 'selected' : '' }}>
+                            {{ $tipoContrato->id }} - {{ $tipoContrato->tipo }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
-            <label for="data_ini">Início:</label>
-            <input type="date" id="data_ini" name="data_ini" value="{{ $contrato->data_ini }}" class="form-control">
+            <div>
+                <label for="data_ini">Início:</label>
+                <input type="date" id="data_ini" name="data_ini" value="{{ $contrato->data_ini }}" class="form-control">
+            </div>
 
-            <label for="data_fim">Fim:</label>
-            <input type="date" id="data_fim" name="data_fim" value="{{ $contrato->data_fim }}" class="form-control">
+            <div>
+                <label for="data_fim">Fim:</label>
+                <input type="date" id="data_fim" name="data_fim" value="{{ $contrato->data_fim }}" class="form-control">
+            </div>
 
-            <label for="valor">Valor total:</label>
-            <input type="number" id="valor" name="valor" value="{{ $contrato->valor }}" class="form-control">
+            <div>
+                <label for="valor">Valor total:</label>
+                <input type="number" id="valor" name="valor" value="{{ $contrato->valor }}" class="form-control">
+            </div>
 
-            <label for="valor_pago">Valor pago:</label>
-            <input type="number" id="valor_pago" name="valor_pago" value="{{ $contrato->valor_pago }}" class="form-control">
-
-            <label for="perocidade_pag">Periocidade pagamentos:</label>
-            <input type="text" id="perocidade_pag" name="perocidade_pag" value="{{ $contrato->perocidade_pag }}" class="form-control">
-
-            <label for="estado">Estado:</label>
-            <input type="text" id="estado" name="estado" value="{{ $contrato->estado }}" class="form-control">
+            <input type="hidden" id="valor_pago" name="valor_pago" value="0">
+            <input type="hidden" id="estado" name="estado" value="ativo">
+            <input type="hidden" id="perocidade_pag" name="perocidade_pag" value="mensal">
+            <input type="hidden" id="id_user" name="id_user" value="{{ Auth::id() }}">
 
             <input type="submit" value="Atualizar Contrato" class="btn btn-primary">
         </form>

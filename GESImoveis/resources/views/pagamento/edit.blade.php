@@ -10,8 +10,14 @@
         @method('PUT')
 
         <div>
-            <label for="id_contrato">ID Contrato:</label>
-            <input type="number" id="id_contrato" name="id_contrato" value="{{ $pagamento->id_contrato }}" required>
+            <label for="id_contrato">ID Contrato</label>
+            <select id="id_contrato" name="id_contrato" required>
+                @foreach($contratos as $contrato)
+                    <option value="{{ $contrato->id }}" {{ $contrato->id == $pagamento->id_contrato ? 'selected' : '' }}>
+                        {{ $contrato->id }} - {{ $contrato->inquilino->nome }}
+                    </option>
+                @endforeach
+            </select>
         </div>
 
         <div>
@@ -20,8 +26,11 @@
         </div>
 
         <div>
-            <label for="metodo_pag">Método de Pagamento:</label>
-            <input type="text" id="metodo_pag" name="metodo_pag" value="{{ $pagamento->metodo_pag }}" required>
+            <label for="metodo_pag">Método de Pagamento</label>
+            <select id="metodo_pag" name="metodo_pag" required>
+                <option value="MBWay" {{ $pagamento->metodo_pag == 'MBWay' ? 'selected' : '' }}>MBWay</option>
+                <option value="Transferência" {{ $pagamento->metodo_pag == 'Transferência' ? 'selected' : '' }}>Transferência</option>
+            </select>
         </div>
 
         <div>

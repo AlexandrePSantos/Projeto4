@@ -38,7 +38,8 @@ class PagamentoController extends Controller
      */
     public function create()
     {
-        return view('pagamento.create');
+        $contratos = Contrato::all();
+        return view('pagamento.create', compact('contratos'));
     }
 
     /**
@@ -47,19 +48,20 @@ class PagamentoController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'contrato_id' => 'required|exists:contrato,id',
+            'id_contrato' => 'required|exists:contrato,id',
             'valor' => [
                 'required',
                 'gt:0',
                 function ($attribute, $value, $fail) use ($request) {
-                    $contrato = Contrato::find($request->contrato_id);
-                    $totalPago = Pagamento::where('contrato_id', $request->contrato_id)->sum('valor');
-                    if ($value > ($contrato->valor_total - $totalPago)) {
+                    $contrato = Contrato::find($request->id_contrato);
+                    $totalPago = Pagamento::where('id_contrato', $request->id_contrato)->sum('valor');
+                    if ($value > ($contrato->valor - $totalPago)) {
                         $fail($attribute.' exceeds the remaining contract value.');
                     }
                 },
             ],
-            'data' => 'required|date|before_or_equal:today',
+            'data_pag' => 'required|date|before_or_equal:today',
+            'metodo_pag' => 'required|in:MBWay,Transferência',
         ]);
 
         if ($validator->fails()) {
@@ -86,7 +88,8 @@ class PagamentoController extends Controller
      */
     public function edit(Pagamento $pagamento)
     {
-        return view('pagamento.edit', compact('pagamento'));
+        $contratos = Contrato::all();
+        return view('pagamento.edit', compact('pagamento', 'contratos'));
     }
 
     /**
@@ -95,28 +98,28 @@ class PagamentoController extends Controller
     public function update(Request $request, Pagamento $pagamento)
     {
         $validator = Validator::make($request->all(), [
-            'contrato_id' => 'required|exists:contrato,id',
+            'id_contrato' => 'required|exists:contrato,id',
             'valor' => [
                 'required',
                 'gt:0',
                 function ($attribute, $value, $fail) use ($request, $pagamento) {
-                    $contrato = Contrato::find($request->contrato_id);
-                    $totalPago = Pagamento::where('contrato_id', $request->contrato_id)->where('id', '!=', $pagamento->id)->sum('valor');
-                    if ($value > ($contrato->valor_total - $totalPago)) {
+                    $contrato = Contrato::find($request->id_contrato);
+                    $totalPago = Pagamento::where('id_contrato', $request->id_contrato)->where('id', '!=', $pagamento->id)->sum('valor');
+                    if ($value > ($contrato->valor - $totalPago)) {
                         $fail($attribute.' exceeds the remaining contract value.');
                     }
                 },
             ],
-            'data' => 'required|date|before_or_equal:today',
+            'data_pag' => 'required|date|before_or_equal:today',
+            'metodo_pag' => 'required|in:MBWay,Transferência',
         ]);
 
         if ($validator->fails()) {
-            return redirect('pagamento/' . $pagamento->id . '/edit')
+            return redirect()->route('pagamento.edit', $pagamento->id)
                         ->withErrors($validator)
                         ->withInput();
         }
 
-        // The Pagamento is valid, update it in the database...
         $pagamento->update($request->all());
         return redirect()->route('pagamento.index');
     }
@@ -128,6 +131,20 @@ class PagamentoController extends Controller
     {
         $pagamento->delete();
         return redirect()->route('pagamento.index');
+    }
+
+    /**
+     * Método auxiliar para calcular o valor em falta para um contrato específico.
+     */
+    public function getValorEmFalta($id)
+    {
+        $contrato = Contrato::find($id);
+        if (!$contrato) {
+            return response()->json(['error' => 'Contrato não encontrado'], 404);
+        }
+        $totalPago = Pagamento::where('id_contrato', $id)->sum('valor');
+        $valorEmFalta = $contrato->valor - $totalPago;
+        return response()->json(['valor_em_falta' => $valorEmFalta]);
     }
 
     /**
@@ -174,16 +191,9 @@ class PagamentoController extends Controller
 
         $jsonResponse = $responseEmail->json();
 
-        // Dump and die to print the JSON response
-        // dd($jsonResponse);
-
-        // Your logic to emit the fatura
-
         if (!$response->failed() && !$responseEmail->failed()) {
-            // Flash a success message to the session
             session()->flash('message', 'Fatura was sent successfully!');
 
-            // Redirect back to the same page
             return redirect()->back();
         }
 
